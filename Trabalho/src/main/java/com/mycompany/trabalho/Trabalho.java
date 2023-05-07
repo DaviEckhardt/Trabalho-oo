@@ -51,7 +51,7 @@ public class Trabalho {
     }
     
     public static void CadastrarEquipe(){
-        
+      Equipe 1 = new Equipe(103, "Rinobot", "Juiz de Fora");  
     }
     public static void CadastrarRobo(){
         
