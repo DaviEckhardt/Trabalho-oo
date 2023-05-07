@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class Trabalho {
 
     public static ArrayList<Equipe> equipes = new ArrayList();
-  
+    public static ArrayList<Competidor> competidores = new ArrayList();
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         System.out.println("Bem vindo ao sistema de competições!");
@@ -56,9 +56,12 @@ public class Trabalho {
     public static void CadastrarEquipe(Scanner input){
         int id = equipes.size() + 1;
         System.out.print("Digite o nome da equipe:");
-        String nome = input.next();
+        input.nextLine();
+        String nome = input.nextLine();
         System.out.print("Digite a cidade da equipe:");
-        String cidade = input.next();
+        input.nextLine();
+        String cidade = input.nextLine();
+        
         
         Equipe equipe = new Equipe(id, nome, cidade);
         equipes.add(equipe);        
@@ -68,7 +71,23 @@ public class Trabalho {
         
     }
     public static void CadastrarCompetidor(Scanner input){
+        int id = competidores.size()+1;
         
+        System.out.println("Digite o nome do competidor:");
+        input.nextLine();
+        String nome = input.nextLine();
+        System.out.println("Digite o documento do competidor:");
+        //input.nextLine();
+        String documento = input.nextLine();
+        System.out.println("Digite a categoria do competidor:");
+       // input.nextLine();
+        String categoria = input.nextLine();
+        System.out.println("Digite a equipe do competidor:");
+       // input.nextLine();
+        String equipe = input.nextLine();
+        
+        Competidor competidor = new Competidor(id, nome, documento, equipe, categoria);
+        competidores.add(competidor);
     }
     public static void CadastrarCategoria(Scanner input){
         
