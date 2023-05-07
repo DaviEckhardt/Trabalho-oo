@@ -28,7 +28,7 @@ public class Trabalho {
                 System.out.println(" 3) Cadastrar Competidor");
                 System.out.println(" 4) Cadastrar Categoria");            
                 System.out.println(" 5) Sair");
-                System.out.println("Opção: ");
+                System.out.print("Opção: ");
                 opcao = input.nextInt();
             } while (opcao < 1 || opcao > 5);
 
@@ -55,9 +55,9 @@ public class Trabalho {
     
     public static void CadastrarEquipe(Scanner input){
         int id = equipes.size() + 1;
-        System.out.println("Digite o nome da equipe:");
+        System.out.print("Digite o nome da equipe:");
         String nome = input.next();
-        System.out.println("Digite a cidade da equipe:");
+        System.out.print("Digite a cidade da equipe:");
         String cidade = input.next();
         
         Equipe equipe = new Equipe(id, nome, cidade);
