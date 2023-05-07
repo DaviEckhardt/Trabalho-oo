@@ -30,7 +30,7 @@ public class Trabalho {
                 System.out.println(" 5) Sair");
                 System.out.println("Opção: ");
                 opcao = input.nextInt();
-            } while (opcao < 1 || opcao > 4);
+            } while (opcao < 1 || opcao > 5);
 
 
             switch (opcao) {
