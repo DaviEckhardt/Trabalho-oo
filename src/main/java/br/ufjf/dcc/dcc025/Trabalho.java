@@ -4,6 +4,7 @@
 
 package br.ufjf.dcc.dcc025;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -12,6 +13,8 @@ import java.util.Scanner;
  */
 public class Trabalho {
 
+    public static ArrayList<Equipe> equipes = new ArrayList();
+  
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         System.out.println("Bem vindo ao sistema de competições!");
@@ -32,16 +35,16 @@ public class Trabalho {
 
             switch (opcao) {
                 case 1 -> {
-                    CadastrarEquipe();
+                    CadastrarEquipe(input);
                 }
                 case 2 -> {
-                    CadastrarRobo();
+                    CadastrarRobo(input);
                 }
                 case 3 -> {
-                    CadastrarCompetidor();                
+                    CadastrarCompetidor(input);                
                 }
                 case 4 -> {
-                    CadastrarCategoria();                
+                    CadastrarCategoria(input);                
                 }
                 case 5 -> {
                     System.out.println("Obrigado por usar nosso sistema!");
@@ -50,16 +53,23 @@ public class Trabalho {
         }
     }
     
-    public static void CadastrarEquipe(){
-      Equipe 1 = new Equipe(103, "Rinobot", "Juiz de Fora");  
+    public static void CadastrarEquipe(Scanner input){
+        int id = equipes.size() + 1;
+        System.out.println("Digite o nome da equipe:");
+        String nome = input.next();
+        System.out.println("Digite a cidade da equipe:");
+        String cidade = input.next();
+        
+        Equipe equipe = new Equipe(id, nome, cidade);
+        equipes.add(equipe);        
     }
-    public static void CadastrarRobo(){
+    public static void CadastrarRobo(Scanner input){
         
     }
-    public static void CadastrarCompetidor(){
+    public static void CadastrarCompetidor(Scanner input){
         
     }
-    public static void CadastrarCategoria(){
+    public static void CadastrarCategoria(Scanner input){
         
     }
     
