@@ -8,10 +8,10 @@ import java.util.*;
  *
  * @author Davi
  */
-public class Competição<T> {
+public class Competicao<T> {
     private ArrayList<T> lista_robos;
     
-    public Competição(ArrayList<T> lista_robos) {
+    public Competicao(ArrayList<T> lista_robos) {
         this.lista_robos = lista_robos;
     }
     public ArrayList<T> getLista_robos() {
