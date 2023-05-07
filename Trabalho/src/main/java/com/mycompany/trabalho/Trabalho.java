@@ -11,6 +11,11 @@ package com.mycompany.trabalho;
 public class Trabalho {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Equipe equipe = new Equipe(20354, "Rinobot", "Juiz de Fora");
+        Robo robo = new Robo(201, "Nego ney", 20354, 23);
+        Competidor competidor = new Competidor(2056, "João", "103.520.457-45", "Rinobot", "Seguidor de linha");
+    
+        System.out.println(equipe.getNome());
+    
     }
 }

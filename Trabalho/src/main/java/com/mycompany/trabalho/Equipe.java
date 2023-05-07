@@ -3,27 +3,27 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.trabalho;
-import java.util.*;
+
 /**
  *
  * @author Davi
  */
 public class Equipe {
-    String id;
+    int id;
     String nome;
     String cidade;
 
-    public Equipe(String id, String nome, String cidade) {
+    public Equipe(int id, String nome, String cidade) {
         this.id = id;
         this.nome = nome;
         this.cidade = cidade;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
