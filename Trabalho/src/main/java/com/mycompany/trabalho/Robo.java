@@ -8,13 +8,13 @@ package com.mycompany.trabalho;
  *
  * @author Davi
  */
-public class Robô {
+public class Robo {
     String id;
     String nome;
     String equipe_id;
     String Categoria_id;
 
-    public Robô(String id, String nome, String equipe_id, String Categoria_id) {
+    public Robo(String id, String nome, String equipe_id, String Categoria_id) {
         this.id = id;
         this.nome = nome;
         this.equipe_id = equipe_id;
