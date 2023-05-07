@@ -64,6 +64,7 @@ public class Trabalho {
         equipes.add(equipe);        
     }
     public static void CadastrarRobo(Scanner input){
+        int equipeId = SelecionaEquipe(input); 
         
     }
     public static void CadastrarCompetidor(Scanner input){
@@ -72,5 +73,20 @@ public class Trabalho {
     public static void CadastrarCategoria(Scanner input){
         
     }
+    
+    private static int SelecionaEquipe(Scanner input){
+        int id;
+        do {            
+            System.out.println("Qual equipe deseja selecionar?");
+            for(Equipe equipe: equipes){
+                System.out.println(String.format("  %d) %s", equipe.id, equipe.nome));
+            }
+            System.out.print("Opção: ");        
+            id = input.nextInt();
+        } while (id < 0 || id > equipes.size());        
+        
+        return id;
+    }
+    
     
 }
