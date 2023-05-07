@@ -7,6 +7,7 @@ import java.util.*;
 /**
  *
  * @author Davi
+ * @param <T>
  */
 public class Competicao<T> {
     private ArrayList<T> lista_robos;
