@@ -2,13 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-<<<<<<< HEAD:Trabalho/src/main/java/com/mycompany/trabalho/Equipe.java
-package com.mycompany.trabalho;
 
-=======
 package br.ufjf.dcc.dcc025;
-import java.util.*;
->>>>>>> main:src/main/java/br/ufjf/dcc/dcc025/Equipe.java
+
 /**
  *
  * @author Davi

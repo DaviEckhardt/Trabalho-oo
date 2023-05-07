@@ -9,20 +9,12 @@ package br.ufjf.dcc.dcc025;
  * @author Davi
  */
 public class Robo {
-<<<<<<< HEAD:Trabalho/src/main/java/com/mycompany/trabalho/Robo.java
     int id;
-=======
-    String id;
->>>>>>> main:src/main/java/br/ufjf/dcc/dcc025/Robo.java
     String nome;
     int equipe_id;
     int Categoria_id;
 
-<<<<<<< HEAD:Trabalho/src/main/java/com/mycompany/trabalho/Robo.java
     public Robo(int id, String nome, int equipe_id, int Categoria_id) {
-=======
-    public Robo(String id, String nome, String equipe_id, String Categoria_id) {
->>>>>>> main:src/main/java/br/ufjf/dcc/dcc025/Robo.java
         this.id = id;
         this.nome = nome;
         this.equipe_id = equipe_id;
