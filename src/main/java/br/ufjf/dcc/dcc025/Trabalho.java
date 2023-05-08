@@ -15,6 +15,8 @@ public class Trabalho {
 
     public static ArrayList<Equipe> equipes = new ArrayList();
     public static ArrayList<Competidor> competidores = new ArrayList();
+    public static ArrayList<Categoria> categorias = new ArrayList();
+  
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         System.out.println("Bem vindo ao sistema de competições!");
@@ -56,18 +58,16 @@ public class Trabalho {
     public static void CadastrarEquipe(Scanner input){
         int id = equipes.size() + 1;
         System.out.print("Digite o nome da equipe:");
-        input.nextLine();
-        String nome = input.nextLine();
+        String nome = input.next();
         System.out.print("Digite a cidade da equipe:");
-        input.nextLine();
-        String cidade = input.nextLine();
-        
+        String cidade = input.next();
         
         Equipe equipe = new Equipe(id, nome, cidade);
         equipes.add(equipe);        
     }
     public static void CadastrarRobo(Scanner input){
         int equipeId = SelecionaEquipe(input); 
+        int categoriaId = SelecionaCategoria(input);
         
     }
     public static void CadastrarCompetidor(Scanner input){
@@ -90,7 +90,13 @@ public class Trabalho {
         competidores.add(competidor);
     }
     public static void CadastrarCategoria(Scanner input){
+        int id = categorias.size()+1;
         
+        System.out.println("Digite o nome da categoria:");
+        input.nextLine();
+        String nome = input.nextLine();
+        Categoria categoria = new Categoria(id, nome);
+        categorias.add(categoria);
     }
     
     private static int SelecionaEquipe(Scanner input){
@@ -107,5 +113,17 @@ public class Trabalho {
         return id;
     }
     
-    
+    private static int SelecionaCategoria(Scanner input){
+        int id;
+        do {            
+            System.out.println("Qual categoria deseja selecionar?");
+            for(Categoria categoria: categorias){
+                System.out.println(String.format("  %d) %s", categoria.id, categoria.nome));
+            }
+            System.out.print("Opção: ");        
+            id = input.nextInt();
+        } while (id < 0 || id > equipes.size());        
+        
+        return id;
+    }
 }
