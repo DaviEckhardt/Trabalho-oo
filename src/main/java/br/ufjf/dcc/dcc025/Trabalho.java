@@ -54,6 +54,7 @@ public class Trabalho {
     public static void CadastrarEquipe(Scanner input){
         int id = equipes.size() + 1;
         System.out.print("Digite o nome da equipe: ");
+        input.nextLine();
         String nome = input.nextLine();
         System.out.print("Digite a cidade da equipe: ");
         String cidade = input.nextLine();        
