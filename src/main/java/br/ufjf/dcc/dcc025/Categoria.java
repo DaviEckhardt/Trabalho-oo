@@ -8,28 +8,33 @@ package br.ufjf.dcc.dcc025;
  *
  * @author danie
  */
-public class Categoria {
-    int id;
-    String nome;
+
+public enum Categoria {
+    VSS(1, "VSS"),
+    MiniSumo(2, "Mini Sumo"),
+    SumoLego(3,"Sumo Lego"),
+    SPL(4, "SPL"),
+    Seguidor(5, "Seguidor de Linha"),
+    Perseguidor(6, "Perseguidor de Linha"),
+    Combate(7, "Combate");
     
-    public Categoria(int id, String nome){
+    private final int id;
+    private final String nome;
+
+    private Categoria(int id, String nome) {
         this.id = id;
         this.nome = nome;
-    }
-    
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getNome() {
         return nome;
     }
-
-    public void setNome(String nome) {
-        this.nome = nome;
+    public int getId(){
+        return id;
     }
+    
+    @Override
+    public String toString(){
+        return String.format("%d) %s", id, nome);
+    }    
 }

@@ -11,14 +11,14 @@ package br.ufjf.dcc.dcc025;
 public class Robo {
     int id;
     String nome;
-    int equipe_id;
-    int Categoria_id;
+    int equipeId;
+    int categoriaId;
 
-    public Robo(int id, String nome, int equipe_id, int Categoria_id) {
+    public Robo(int id, String nome, int equipeId, int categoriaId) {
         this.id = id;
         this.nome = nome;
-        this.equipe_id = equipe_id;
-        this.Categoria_id = Categoria_id;
+        this.equipeId = equipeId;
+        this.categoriaId = categoriaId;
     }
 
     public int getId() {
@@ -37,20 +37,20 @@ public class Robo {
         this.nome = nome;
     }
 
-    public int getEquipe_id() {
-        return equipe_id;
+    public int getEquipeId() {
+        return equipeId;
     }
 
-    public void setEquipe_id(int equipe_id) {
-        this.equipe_id = equipe_id;
+    public void setEquipeId(int equipeId) {
+        this.equipeId = equipeId;
     }
 
-    public int getCategoria_id() {
-        return Categoria_id;
+    public int getCategoriaId() {
+        return categoriaId;
     }
 
-    public void setCategoria_id(int Categoria_id) {
-        this.Categoria_id = Categoria_id;
+    public void setCategoriaId(int categoriaId) {
+        this.categoriaId = categoriaId;
     }
     
     
