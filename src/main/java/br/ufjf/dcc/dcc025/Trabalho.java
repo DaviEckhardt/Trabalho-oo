@@ -90,13 +90,46 @@ public class Trabalho {
         competidores.add(competidor);
     }
     public static void CadastrarCategoria(Scanner input){
-        int id = categorias.size()+1;
+         
+        int id = 1;
+        String VSS = "VSS";
+        Categoria categoria = new Categoria(id, VSS);
+        id = id + 1;
+        categorias.add(categoria);
+        String MiniSumo = "Mini Sumo";
+        categoria = new Categoria(id, MiniSumo);
+        id = id + 1;
+        categorias.add(categoria);
+        String SumoLego= "Sumo Lego";
+        categoria = new Categoria(id, SumoLego);
+        id = id + 1;
+        categorias.add(categoria);
+        String SPL = "SPL";
+        categoria = new Categoria(id, SPL);
+        id = id + 1;
+        categorias.add(categoria);
+        String Seguidor = "Seguidor de Linha";
+        categoria = new Categoria(id, Seguidor);
+        id = id + 1;
+        categorias.add(categoria);
+        String Perseguidor = "Perseguidor de Linha";
+        categoria = new Categoria(id, Perseguidor);
+        id = id + 1;
+        categorias.add(categoria);
+        String Combate = "Combate";
+        categoria = new Categoria(id, Combate);
+        id = id + 1;
+        categorias.add(categoria);
+
+        
+        /*int id = categorias.size()+1;
         
         System.out.println("Digite o nome da categoria:");
         input.nextLine();
         String nome = input.nextLine();
         Categoria categoria = new Categoria(id, nome);
         categorias.add(categoria);
+*/
     }
     
     private static int SelecionaEquipe(Scanner input){
