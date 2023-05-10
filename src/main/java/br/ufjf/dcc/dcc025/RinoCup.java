@@ -1,7 +1,11 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
-
+/* Alunos
+    Daniel Keim Almeida - 202165021AB
+    Davi Monken Ekchardt - 202265019A
+    Gabriel Cordeiro Tavares - 202265163A
+*/
 package br.ufjf.dcc.dcc025;
 
 import java.util.ArrayList;
@@ -64,6 +68,7 @@ public class RinoCup {
     public static void CadastrarRobo(Scanner input){
         int id = robos.size() + 1;
         System.out.print("Digite o nome do robô: ");
+        input.nextLine();
         String nome = input.nextLine();
         int equipeId = SelecionaEquipe(input); 
         int categoriaId = SelecionaCategoria(input);
