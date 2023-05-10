@@ -95,7 +95,7 @@ public class Chaveamento extends javax.swing.JFrame {
             }
         });
 
-        jTextField4.setText("Vencedor ");
+        jTextField4.setText("Vencedor conflito");
 
         jTextField5.setText("Equipe 4");
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
@@ -108,19 +108,19 @@ public class Chaveamento extends javax.swing.JFrame {
 
         jTextField7.setText("Equipe 6");
 
-        jTextField8.setText("Vencedor ");
+        jTextField8.setText("Vencedor conflito");
 
-        jTextField9.setText("Vencedor ");
+        jTextField9.setText("Vencedor conflito");
 
         jTextField10.setText("Equipe 7");
 
         jTextField11.setText("Equipe 8");
 
-        jTextField12.setText("Vencedor ");
+        jTextField12.setText("Vencedor conflito");
 
-        jTextField19.setText("Vencedor ");
+        jTextField19.setText("Vencedor conflito");
 
-        jTextField14.setText("Vencedor ");
+        jTextField14.setText("Vencedor conflito");
         jTextField14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField14ActionPerformed(evt);
