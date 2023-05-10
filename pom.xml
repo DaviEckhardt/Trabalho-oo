@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>br.ufjf.dcc.dcc025</groupId>
-    <artifactId>Trabalho</artifactId>
+    <artifactId>RinoCup</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
      <dependencies>
@@ -17,7 +17,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <exec.mainClass>br.ufjf.dcc.dcc025.Trabalho</exec.mainClass>
+        <exec.mainClass>br.ufjf.dcc.dcc025.RinoCup</exec.mainClass>
     </properties>
     <build>
         <plugins>
@@ -26,7 +26,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>br.ufjf.dcc.dcc025.Trabalho</mainClass>
+                            <mainClass>br.ufjf.dcc.dcc025.RinoCup</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>

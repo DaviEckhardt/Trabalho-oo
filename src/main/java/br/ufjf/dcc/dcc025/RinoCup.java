@@ -11,7 +11,7 @@ import java.util.Scanner;
  *
  * @author Davi
  */
-public class Trabalho {
+public class RinoCup {
 
     public static ArrayList<Equipe> equipes = new ArrayList();
     public static ArrayList<Competidor> competidores = new ArrayList();
