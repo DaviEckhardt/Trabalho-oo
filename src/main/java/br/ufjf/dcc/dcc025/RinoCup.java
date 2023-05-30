@@ -4,6 +4,11 @@
 
 package br.ufjf.dcc.dcc025;
 
+import br.ufjf.dcc.dcc025.controller.EquipeController;
+import br.ufjf.dcc.dcc025.model.Competidor;
+import br.ufjf.dcc.dcc025.model.Robo;
+import br.ufjf.dcc.dcc025.model.Equipe;
+import br.ufjf.dcc.dcc025.model.Categoria;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -36,7 +41,7 @@ public class RinoCup {
 
             switch (opcao) {
                 case 1 -> {
-                    CadastrarEquipe(input);
+                    CadastrarEquipe();
                 }
                 case 2 -> {
                     CadastrarRobo(input);
@@ -51,21 +56,15 @@ public class RinoCup {
         }
     }
     
-    public static void CadastrarEquipe(Scanner input){
-        int id = equipes.size() + 1;
-        System.out.print("Digite o nome da equipe: ");
-        input.nextLine();
-        String nome = input.nextLine();
-        System.out.print("Digite a cidade da equipe: ");
-        String cidade = input.nextLine();        
-        Equipe equipe = new Equipe(id, nome, cidade);
-        equipes.add(equipe);        
+    public static void CadastrarEquipe(){
+        EquipeController controller = new EquipeController();
+        controller.CadastrarEquipe();
     }
     public static void CadastrarRobo(Scanner input){
         int id = robos.size() + 1;
         System.out.print("Digite o nome do robô: ");
         String nome = input.nextLine();
-        int equipeId = SelecionaEquipe(input); 
+        int equipeId = SelecionaEquipe(); 
         int categoriaId = SelecionaCategoria(input);
         
         robos.add(new Robo(id, nome, equipeId, categoriaId));
@@ -90,23 +89,9 @@ public class RinoCup {
         competidores.add(competidor);
     }  
     
-    private static int SelecionaEquipe(Scanner input){
-        int id;
-        do {            
-            System.out.println("Qual equipe deseja selecionar?");
-            for(Equipe equipe: equipes){
-                System.out.println(String.format("  %d) %s", equipe.id, equipe.nome));
-            }
-            System.out.println("  0) Cadastrar nova");
-            System.out.print("Opção: ");        
-            id = input.nextInt();
-            
-            if(id == 0)
-                CadastrarEquipe(input);
-            
-        } while (id <= 0 || id > equipes.size());        
-        
-        return id;
+    private static int SelecionaEquipe(){
+        EquipeController controller = new EquipeController();
+        return controller.SelecionaEquipe();
     }
     
     private static int SelecionaCategoria(Scanner input){
