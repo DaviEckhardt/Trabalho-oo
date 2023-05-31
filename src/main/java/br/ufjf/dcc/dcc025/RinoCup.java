@@ -74,24 +74,22 @@ public class RinoCup {
         
         robos.add(new Robo(id, nome, equipeId, categoriaId));
     }
-    public static void CadastrarCompetidor(Scanner input){
+    public static int CadastrarCompetidor(Scanner input){
         int id = competidores.size()+1;
         
         System.out.println("Digite o nome do competidor:");
-        input.nextLine();
         String nome = input.nextLine();
         System.out.println("Digite o documento do competidor:");
-        //input.nextLine();
         String documento = input.nextLine();
         System.out.println("Digite a categoria do competidor:");
-       // input.nextLine();
         String categoria = input.nextLine();
         System.out.println("Digite a equipe do competidor:");
-       // input.nextLine();
         String equipe = input.nextLine();
         
         Competidor competidor = new Competidor(id, nome, documento, equipe, categoria);
         competidores.add(competidor);
+        
+        return id;
     }  
     
     private static int SelecionaEquipe(){

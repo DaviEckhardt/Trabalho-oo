@@ -8,13 +8,23 @@ package br.ufjf.dcc.dcc025.model;
 
 public class Equipe {
     int id;
+    int capitaoId;
     String nome;
     String cidade;
 
-    public Equipe(int id, String nome, String cidade) {
+    public Equipe(int id, String nome, String cidade, int capitaoId) {
         this.id = id;
+        this.capitaoId = capitaoId;
         this.nome = nome;
         this.cidade = cidade;
+    }
+
+    public int getCapitaoId() {
+        return capitaoId;
+    }
+
+    public void setCapitaoId(int capitaoId) {
+        this.capitaoId = capitaoId;
     }
 
     public int getId() {

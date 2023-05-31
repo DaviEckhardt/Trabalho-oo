@@ -4,6 +4,7 @@
  */
 package br.ufjf.dcc.dcc025.controller;
 
+import br.ufjf.dcc.dcc025.RinoCup;
 import br.ufjf.dcc.dcc025.model.Equipe;
 import br.ufjf.dcc.dcc025.repository.Repository;
 import java.util.Scanner;
@@ -23,13 +24,15 @@ public class EquipeController {
     public void CadastrarEquipe(){
         Scanner input = new Scanner(System.in);
         int id = equipes.findAll().size()+ 1;
+        int capitaoId;
         
         System.out.print("Digite o nome da equipe: ");
-        input.nextLine();
         String nome = input.nextLine();
         System.out.print("Digite a cidade da equipe: ");
-        String cidade = input.nextLine();        
-        Equipe equipe = new Equipe(id, nome, cidade);
+        String cidade = input.nextLine();
+        System.out.println("Quem é o capitão da equipe?");
+        capitaoId = RinoCup.CadastrarCompetidor(input);
+        Equipe equipe = new Equipe(id, nome, cidade, capitaoId);
         equipes.save(equipe);        
     }
     
