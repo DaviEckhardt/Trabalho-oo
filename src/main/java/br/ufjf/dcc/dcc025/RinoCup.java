@@ -85,6 +85,9 @@ public class RinoCup {
         String categoria = input.nextLine();
         System.out.println("Digite a equipe do competidor:");
         String equipe = input.nextLine();
+        System.out.println("Digite o e-mail do competidor:");
+        String email = input.nextLine();
+        //adicionar excecao
         
         Competidor competidor = new Competidor(id, nome, documento, equipe, categoria);
         competidores.add(competidor);
