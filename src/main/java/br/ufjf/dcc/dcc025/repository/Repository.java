@@ -5,6 +5,7 @@
 package br.ufjf.dcc.dcc025.repository;
 
 
+import br.ufjf.dcc.dcc025.utils.Arquivo;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.File;
@@ -17,12 +18,12 @@ import com.google.gson.Gson;
  * @author Gabriel
  * @param <T>
  */
-public class Repository<T> implements IRepository<T> {
+public abstract class Repository<T> implements IRepository<T> {
     private String PATH = DIRECTORY+ File.separator;
 
-    public Repository() {
-        Type tipo = new TypeToken<T>(){}.getType();
-        PATH += tipo.getTypeName() + ".json";
+    public Repository(String entity) {
+        //Type tipo = new TypeToken<T>(){}.getType();
+        PATH += entity + ".json";
         
         File diretorio = new File(DIRECTORY);
         if(!diretorio.exists())

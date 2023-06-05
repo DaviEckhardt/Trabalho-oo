@@ -6,7 +6,7 @@ package br.ufjf.dcc.dcc025.controller;
 
 import br.ufjf.dcc.dcc025.RinoCup;
 import br.ufjf.dcc.dcc025.model.Equipe;
-import br.ufjf.dcc.dcc025.repository.Repository;
+import br.ufjf.dcc.dcc025.repository.EquipeRepository;
 import java.util.Scanner;
 
 /**
@@ -14,13 +14,12 @@ import java.util.Scanner;
  * @author Gabriel
  */
 public class EquipeController {
-    Repository<Equipe> equipes;
+    EquipeRepository equipes;
 
     public EquipeController() {
-        equipes = new Repository<>();
+        equipes = new EquipeRepository();
     }        
-        
-    
+            
     public void CadastrarEquipe(){
         Scanner input = new Scanner(System.in);
         int id = equipes.findAll().size()+ 1;
