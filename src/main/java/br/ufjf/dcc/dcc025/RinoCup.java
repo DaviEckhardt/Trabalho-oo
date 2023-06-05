@@ -77,6 +77,7 @@ public class RinoCup {
     public static int CadastrarCompetidor(Scanner input){
         int id = competidores.size()+1;
         
+        input.nextLine();
         System.out.println("Digite o nome do competidor:");
         String nome = input.nextLine();
         System.out.println("Digite o documento do competidor:");
