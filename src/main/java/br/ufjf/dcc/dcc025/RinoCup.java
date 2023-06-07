@@ -15,6 +15,8 @@ import br.ufjf.dcc.dcc025.model.Equipe;
 import br.ufjf.dcc.dcc025.model.Categoria;
 import java.util.ArrayList;
 import java.util.Scanner;
+import br.ufjf.dcc.dcc025.model.Email;
+import br.ufjf.dcc.dcc025.exception.EmailException;
 
 /**
  *
@@ -51,6 +53,7 @@ public class RinoCup {
                     CadastrarRobo(input);
                 }
                 case 3 -> {
+                    input.nextLine();
                     CadastrarCompetidor(input);                
                 }
                 case 4 -> {
@@ -77,7 +80,7 @@ public class RinoCup {
     public static int CadastrarCompetidor(Scanner input){
         int id = competidores.size()+1;
         
-        input.nextLine();
+
         System.out.println("Digite o nome do competidor:");
         String nome = input.nextLine();
         System.out.println("Digite o documento do competidor:");
@@ -87,10 +90,18 @@ public class RinoCup {
         System.out.println("Digite a equipe do competidor:");
         String equipe = input.nextLine();
         System.out.println("Digite o e-mail do competidor:");
-        String email = input.nextLine();
-        //adicionar excecao
+        String aux = input.nextLine();
+        Email email;
+        try{
+          email = new Email(aux);
+        }
+        catch(EmailException e){
+            System.out.println("O email é inválido!");
+            return CadastrarCompetidor(input);
+        }
         
-        Competidor competidor = new Competidor(id, nome, documento, equipe, categoria);
+        
+        Competidor competidor = new Competidor(id, nome, documento, equipe, categoria, email);
         competidores.add(competidor);
         
         return id;

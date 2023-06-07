@@ -5,6 +5,7 @@
 package br.ufjf.dcc.dcc025.repository;
 
 
+import br.ufjf.dcc.dcc025.model.Equipe;
 import br.ufjf.dcc.dcc025.utils.Arquivo;
 import com.google.gson.reflect.TypeToken;
 
@@ -46,7 +47,7 @@ public abstract class Repository<T> implements IRepository<T> {
         List<T> itens = new ArrayList<>();
         if(!json.trim().equals("")) {
 
-            Type tipoLista = new TypeToken<List<T>>(){}.getType();
+            Type tipoLista = new TypeToken<List<Equipe>>(){}.getType();
             itens = gson.fromJson(json, tipoLista);
 
             if (itens == null)

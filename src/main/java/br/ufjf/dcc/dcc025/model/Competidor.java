@@ -4,6 +4,7 @@
  */
 package br.ufjf.dcc.dcc025.model;
 
+import br.ufjf.dcc.dcc025.exception.EmailException;
 /* Alunos
     Daniel Keim Almeida - 202165021AB
     Davi Monken Ekchardt - 202265019A
@@ -20,14 +21,24 @@ public class Competidor {
     String documento;
     String equipe;
     String categoria;
+    Email email;
 
 
-    public Competidor(int id, String nome, String documento, String equipe, String categoria) {
+    public Competidor(int id, String nome, String documento, String equipe, String categoria, Email email) {
         this.id = id;
         this.nome = nome;
         this.documento = documento;
         this.equipe = equipe;
         this.categoria = categoria;
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email.getEmail();
+    }
+
+    public void setEmail(String email) throws EmailException {
+        this.email = new Email(email);
     }
 
     public int getId() {
