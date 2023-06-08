@@ -112,7 +112,7 @@ public class RinoCup {
         return controller.SelecionaEquipe();
     }
     
-    private static int SelecionaCategoria(Scanner input){
+    public static int SelecionaCategoria(Scanner input){
         int id;
         do { 
             System.out.println("Qual categoria deseja selecionar?");
