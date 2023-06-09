@@ -15,6 +15,7 @@ package br.ufjf.dcc.dcc025.model;
  * @author Davi
  */
 public class Robo {
+
     int id;
     String nome;
     int equipeId;
@@ -58,6 +59,6 @@ public class Robo {
     public void setCategoriaId(int categoriaId) {
         this.categoriaId = categoriaId;
     }
-    
+
     
 }

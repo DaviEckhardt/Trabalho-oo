@@ -4,6 +4,9 @@
  */
 package br.ufjf.dcc.dcc025;
 import br.ufjf.dcc.dcc025.RinoCup;
+import static br.ufjf.dcc.dcc025.RinoCup.CadastrarEquipe;
+import static br.ufjf.dcc.dcc025.RinoCup.robos;
+import br.ufjf.dcc.dcc025.model.Robo;
 import java.util.Scanner;
 /**
  *
@@ -15,11 +18,20 @@ public class Confrontos {
         System.out.println("De qual categoria será o confronto?");
         int id = RinoCup.SelecionaCategoria(input);
         
+        
         if(id == 1){
             int min = 0;
             int max = 15;
             int val1 = (int)Math.floor(Math.random() * (max - min + 1) + min);
             int val2 = (int)Math.floor(Math.random() * (max - min + 1) + min);
+            System.out.println("Quais robôs vão participar neste confronto?");
+            System.out.println("Robô 1: ");
+            int idRobo1 = SelecionaRobo();
+            System.out.println("Qual a equipe deste robô?");
+            int idEquipe1 = RinoCup.SelEquipe();
+            System.out.println("Robô 2:");
+            int idRobo2 = SelecionaRobo();
+            int idEquipe2 = RinoCup.SelEquipe();
         }
         
         else if(id == 2){
@@ -48,5 +60,24 @@ public class Confrontos {
         }
         
         //falta pontuacao pro perseguidor e pro combate q eu n sei como funciona
+    }
+        public static int SelecionaRobo(){
+        Scanner input = new Scanner(System.in);
+        int id;
+        do {            
+            System.out.println("Qual robô deseja selecionar?");
+            for(Robo robo: robos){
+                System.out.println(String.format("  %d) %s", robo.getId(), robo.getNome()));
+            }
+            System.out.println("  0) Cadastrar novo");
+            System.out.print("Opção: ");        
+            id = input.nextInt();
+            
+            if(id == 0)
+                RinoCup.CadastrarRobo(input);
+            
+        } while (id <= 0 || id > robos.size());        
+        
+        return id;
     }
 }

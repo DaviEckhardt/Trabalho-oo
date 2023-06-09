@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import br.ufjf.dcc.dcc025.model.Email;
 import br.ufjf.dcc.dcc025.exception.EmailException;
+import br.ufjf.dcc.dcc025.repository.Repository;
 
 /**
  *
@@ -61,6 +62,7 @@ public class RinoCup {
                 }
             }         
         }
+        Confrontos.confrontos();
     }
     
     public static void CadastrarEquipe(){
@@ -107,6 +109,9 @@ public class RinoCup {
         return id;
     }  
     
+    public static int SelEquipe(){
+        return SelecionaEquipe();
+    }
     private static int SelecionaEquipe(){
         EquipeController controller = new EquipeController();
         return controller.SelecionaEquipe();
@@ -125,4 +130,5 @@ public class RinoCup {
         
         return id;        
     }
+
 }
