@@ -58,9 +58,11 @@ public abstract class Repository<T> implements IRepository<T> {
 
     @Override
     public void save(T item) {
-        Gson gson = new Gson();
-        String json = gson.toJson(item);
-        Arquivo.append(PATH, json);
+        List<T> list = findAll();
+        list.add(item);
+        save(list);
     }
+    
+
 
 }

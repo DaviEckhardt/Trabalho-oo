@@ -5,6 +5,7 @@
 package br.ufjf.dcc.dcc025.repository;
 
 import br.ufjf.dcc.dcc025.model.Competidor;
+import java.util.List;
 
 /**
  *
@@ -16,4 +17,16 @@ public class CompetidorRepository extends Repository<Competidor> {
         super("competidor");
     }
     
+    @Override
+    public void remove(Competidor item) {
+        List<Competidor> list = findAll();
+
+        for (int i = 0; i < list.size(); i++) {
+            if(list.get(i).getId() == item.getId()){
+                list.remove(i);
+                break;
+            }
+        }        
+        save(list);
+    }
 }

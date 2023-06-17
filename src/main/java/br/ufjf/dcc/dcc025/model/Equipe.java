@@ -51,5 +51,10 @@ public class Equipe {
         this.cidade = cidade;
     }
     
+    @Override
+    public String toString(){
+        return String.format("%d | %s | %s", this.id, this.nome, this.cidade);
+    }
+    
             
 }

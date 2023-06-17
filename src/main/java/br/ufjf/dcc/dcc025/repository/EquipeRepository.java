@@ -5,6 +5,7 @@
 package br.ufjf.dcc.dcc025.repository;
 
 import br.ufjf.dcc.dcc025.model.Equipe;
+import java.util.List;
 
 /**
  *
@@ -12,6 +13,20 @@ import br.ufjf.dcc.dcc025.model.Equipe;
  */
 public class EquipeRepository extends Repository<Equipe> {
     public EquipeRepository(){
-        super("equipe");
+        super("equipe");        
     }
+    
+    @Override
+    public void remove(Equipe item) {
+        List<Equipe> list = findAll();
+        
+        for (int i = 0; i < list.size(); i++) {
+            if(list.get(i).getId() == item.getId()){
+                list.remove(i);
+                break;
+            }
+        }        
+        save(list);
+    }
+
 }

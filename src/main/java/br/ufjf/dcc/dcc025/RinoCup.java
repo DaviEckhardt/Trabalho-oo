@@ -11,13 +11,15 @@ package br.ufjf.dcc.dcc025;
 import br.ufjf.dcc.dcc025.controller.EquipeController;
 import br.ufjf.dcc.dcc025.model.Competidor;
 import br.ufjf.dcc.dcc025.model.Robo;
+import br.ufjf.dcc.dcc025.repository.EquipeRepository;
+import br.ufjf.dcc.dcc025.repository.IRepository;
+import br.ufjf.dcc.dcc025.view.ListagemBase;
 import br.ufjf.dcc.dcc025.model.Equipe;
 import br.ufjf.dcc.dcc025.model.Categoria;
 import java.util.ArrayList;
 import java.util.Scanner;
 import br.ufjf.dcc.dcc025.model.Email;
 import br.ufjf.dcc.dcc025.exception.EmailException;
-import br.ufjf.dcc.dcc025.repository.Repository;
 
 /**
  *
@@ -25,11 +27,27 @@ import br.ufjf.dcc.dcc025.repository.Repository;
  */
 public class RinoCup {
 
-    public static ArrayList<Equipe> equipes = new ArrayList();
-    public static ArrayList<Competidor> competidores = new ArrayList();
-    public static ArrayList<Robo> robos = new ArrayList();
   
     public static void main(String[] args) {
+        ListagemBase<Equipe> listagem = new ListagemBase<Equipe>() {
+            @Override
+            protected IRepository<Equipe> getRepository() {
+                return new EquipeRepository();
+            }
+
+            @Override
+            protected boolean Cadastrar() {
+                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+
+            @Override
+            protected boolean Editar() {
+                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+        };
+
+        listagem.pack();
+        
         Scanner input = new Scanner(System.in);
         System.out.println("Bem vindo ao sistema de competições!");
         
@@ -70,17 +88,17 @@ public class RinoCup {
         controller.CadastrarEquipe();
     }
     public static void CadastrarRobo(Scanner input){
-        int id = robos.size() + 1;
+//        int id = robos.size() + 1;
         System.out.print("Digite o nome do robô: ");
         input.nextLine();
         String nome = input.nextLine();
         int equipeId = SelecionaEquipe(); 
         int categoriaId = SelecionaCategoria(input);
         
-        robos.add(new Robo(id, nome, equipeId, categoriaId));
+//        robos.add(new Robo(id, nome, equipeId, categoriaId));
     }
     public static int CadastrarCompetidor(Scanner input){
-        int id = competidores.size()+1;
+//        int id = competidores.size()+1;
         
 
         System.out.println("Digite o nome do competidor:");
@@ -99,14 +117,14 @@ public class RinoCup {
         }
         catch(EmailException e){
             System.out.println("O email é inválido!");
-            return CadastrarCompetidor(input);
+            //return CadastrarCompetidor(input);
         }
         
         
-        Competidor competidor = new Competidor(id, nome, documento, equipe, categoria, email);
-        competidores.add(competidor);
+        //Competidor competidor = new Competidor(1, nome, documento, equipe, categoria, email == null ?);
+        //competidores.add(competidor);
         
-        return id;
+        return 1;
     }  
     
     public static int SelEquipe(){

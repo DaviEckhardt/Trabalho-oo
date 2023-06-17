@@ -3,9 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package br.ufjf.dcc.dcc025;
-import br.ufjf.dcc.dcc025.RinoCup;
-import static br.ufjf.dcc.dcc025.RinoCup.CadastrarEquipe;
-import static br.ufjf.dcc.dcc025.RinoCup.robos;
 import br.ufjf.dcc.dcc025.model.Robo;
 import java.util.Scanner;
 /**
@@ -66,9 +63,9 @@ public class Confrontos {
         int id;
         do {            
             System.out.println("Qual robô deseja selecionar?");
-            for(Robo robo: robos){
-                System.out.println(String.format("  %d) %s", robo.getId(), robo.getNome()));
-            }
+//            for(Robo robo: robos){
+//                System.out.println(String.format("  %d) %s", robo.getId(), robo.getNome()));
+//            
             System.out.println("  0) Cadastrar novo");
             System.out.print("Opção: ");        
             id = input.nextInt();
@@ -76,7 +73,7 @@ public class Confrontos {
             if(id == 0)
                 RinoCup.CadastrarRobo(input);
             
-        } while (id <= 0 || id > robos.size());        
+        } while (id <= 0);        
         
         return id;
     }

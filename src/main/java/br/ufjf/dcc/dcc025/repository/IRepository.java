@@ -14,4 +14,5 @@ public interface IRepository<T> {
     public void save(T item);
     public void save(List<T> itens);
     public List<T> findAll();
+    public void remove(T item);
 }
