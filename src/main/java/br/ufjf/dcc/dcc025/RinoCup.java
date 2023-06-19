@@ -14,6 +14,7 @@ import br.ufjf.dcc.dcc025.model.Robo;
 import br.ufjf.dcc.dcc025.repository.EquipeRepository;
 import br.ufjf.dcc.dcc025.repository.IRepository;
 import br.ufjf.dcc.dcc025.view.ListagemBase;
+import br.ufjf.dcc.dcc025.view.ListagemEquipe;
 import br.ufjf.dcc.dcc025.model.Equipe;
 import br.ufjf.dcc.dcc025.model.Categoria;
 import java.util.ArrayList;
@@ -29,24 +30,8 @@ public class RinoCup {
 
   
     public static void main(String[] args) {
-        ListagemBase<Equipe> listagem = new ListagemBase<Equipe>() {
-            @Override
-            protected IRepository<Equipe> getRepository() {
-                return new EquipeRepository();
-            }
-
-            @Override
-            protected boolean Cadastrar() {
-                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-            }
-
-            @Override
-            protected boolean Editar() {
-                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-            }
-        };
-
-        listagem.pack();
+        ListagemBase<Equipe> listagem = new ListagemEquipe();
+        listagem.exibir();
         
         Scanner input = new Scanner(System.in);
         System.out.println("Bem vindo ao sistema de competições!");

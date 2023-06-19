@@ -4,18 +4,12 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-import java.io.FileNotFoundException;
 import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -25,10 +19,6 @@ import javax.swing.ListSelectionModel;
 
 import br.ufjf.dcc.dcc025.repository.IRepository;
 import br.ufjf.dcc.dcc025.utils.ImageUtils;
-import java.awt.GraphicsConfiguration;
-import java.awt.Image;
-import java.awt.Toolkit;
-import java.io.File;
 /**
  *
  * @author Gabriel
@@ -51,7 +41,6 @@ public abstract class ListagemBase<T> extends JFrame {
         this.setResizable(false);
         this.setSize(VWIDTH,VHEIGHT);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);       
-        this.setVisible(true);
 
         this.pnlPrincipal = new JPanel();
         this.pnlPrincipal.setLayout(new BorderLayout());
@@ -156,6 +145,11 @@ public abstract class ListagemBase<T> extends JFrame {
         }
     };
 
+    
+    public void exibir(){
+        this.pack();
+        this.setVisible(true);
+    }
     private JTextField edtPesquisa;
     private JList<T> jItens;
     private JPanel pnlPrincipal;
