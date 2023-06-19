@@ -25,8 +25,8 @@ import br.ufjf.dcc.dcc025.utils.ImageUtils;
  * @param <T>
  */
 public abstract class ListagemBase<T> extends JFrame {
-    private final int VWIDTH = 1024;
-    private final int VHEIGHT = 768;
+    private final int VWIDTH = 800;
+    private final int VHEIGHT = 600;
    
     protected abstract IRepository<T> getRepository();
 
