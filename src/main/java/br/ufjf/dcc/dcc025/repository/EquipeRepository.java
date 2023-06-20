@@ -13,7 +13,9 @@ import java.util.List;
  */
 public class EquipeRepository extends Repository<Equipe> {
     public EquipeRepository(){
-        super("equipe");        
+        super("equipe");     
+        
+        save(new Equipe(1, "RINO", "JF", 1));
     }
     
     @Override

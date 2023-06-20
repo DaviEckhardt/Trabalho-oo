@@ -1,5 +1,7 @@
 package br.ufjf.dcc.dcc025.view;
 import br.ufjf.dcc.dcc025.controller.AtualizaDadosListagem;
+import br.ufjf.dcc.dcc025.model.ModoTela;
+import br.ufjf.dcc.dcc025.model.TipoUsuario;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -19,6 +21,7 @@ import javax.swing.ListSelectionModel;
 
 import br.ufjf.dcc.dcc025.repository.IRepository;
 import br.ufjf.dcc.dcc025.utils.ImageUtils;
+import java.awt.Toolkit;
 /**
  *
  * @author Gabriel
@@ -29,10 +32,14 @@ public abstract class ListagemBase<T> extends JFrame {
     private final int VHEIGHT = 600;
    
     protected abstract IRepository<T> getRepository();
-
-    public ListagemBase() {
-        super("Listagem");
-        
+    protected abstract boolean Cadastrar();
+    protected abstract boolean Editar();
+    
+    protected ModoTela Modo;
+    
+    private T itemSelecionado;
+    public ListagemBase(ModoTela modo) {
+        super(modo == ModoTela.Listagem ? "Listagem" : "Pesquisa");
         this.addWindowListener(new AtualizaDadosListagem(this));
         initComponents();
     }
@@ -95,6 +102,12 @@ public abstract class ListagemBase<T> extends JFrame {
     private void desenhaRodape() {
         JPanel painelBotoes = new JPanel();
 
+        JButton btnSelecionar = new JButton("Selecionar");
+        btnSelecionar.addActionListener((ActionEvent arg0) -> {
+            Escolher();
+        });
+        painelBotoes.add(btnSelecionar, BorderLayout.EAST);
+        
         JButton btnCadastrar = new JButton("Cadastrar");
         btnCadastrar.addActionListener((ActionEvent arg0) -> {
             Cadastrar();
@@ -107,17 +120,18 @@ public abstract class ListagemBase<T> extends JFrame {
         });
         painelBotoes.add(btnEditar, BorderLayout.EAST);
         
-        JButton btnRemover = new JButton("Editar");
+        JButton btnRemover = new JButton("Remover");
         btnRemover.addActionListener((ActionEvent arg0) -> {
             Remover();
         });
         painelBotoes.add(btnRemover, BorderLayout.EAST);
         
+
+        
         pnlPrincipal.add(painelBotoes, BorderLayout.SOUTH);
     }
     
-    protected abstract boolean Cadastrar();
-    protected abstract boolean Editar();
+
     protected boolean Remover(){
         int index = jItens.getSelectedIndex();
         if(index != -1){
@@ -127,6 +141,15 @@ public abstract class ListagemBase<T> extends JFrame {
         }
         return false;
     };
+    
+    protected void Escolher(){
+        int index = jItens.getSelectedIndex();
+        if(index != -1){
+            itemSelecionado = jItens.getModel().getElementAt(index);
+        }
+        this.dispose();
+    };
+    
     public void Carregar(){         
         try {
             List<T> dados = getRepository().findAll();
@@ -144,11 +167,19 @@ public abstract class ListagemBase<T> extends JFrame {
             JOptionPane.showMessageDialog(this, "Não foi possível carregar os dados!");
         }
     };
-
     
-    public void exibir(){
+    protected void exibir(){
         this.pack();
         this.setVisible(true);
+    }
+   
+    protected T selecionar(){
+        exibir();
+        while(this.isShowing()){
+            this.pack();
+            //espera a tela fechar;
+        }   
+        return itemSelecionado;
     }
     private JTextField edtPesquisa;
     private JList<T> jItens;

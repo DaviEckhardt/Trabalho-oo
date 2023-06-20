@@ -9,15 +9,11 @@
 package br.ufjf.dcc.dcc025;
 
 import br.ufjf.dcc.dcc025.controller.EquipeController;
-import br.ufjf.dcc.dcc025.model.Competidor;
-import br.ufjf.dcc.dcc025.model.Robo;
-import br.ufjf.dcc.dcc025.repository.EquipeRepository;
-import br.ufjf.dcc.dcc025.repository.IRepository;
+import br.ufjf.dcc.dcc025.controller.LoginController;
 import br.ufjf.dcc.dcc025.view.ListagemBase;
 import br.ufjf.dcc.dcc025.view.ListagemEquipe;
 import br.ufjf.dcc.dcc025.model.Equipe;
 import br.ufjf.dcc.dcc025.model.Categoria;
-import java.util.ArrayList;
 import java.util.Scanner;
 import br.ufjf.dcc.dcc025.model.Email;
 import br.ufjf.dcc.dcc025.exception.EmailException;
@@ -30,8 +26,10 @@ public class RinoCup {
 
   
     public static void main(String[] args) {
-        ListagemBase<Equipe> listagem = new ListagemEquipe();
-        listagem.exibir();
+        LoginController.Logar();
+        
+        Equipe equipe = ListagemEquipe.Selecionar();
+        System.out.println(equipe);
         
         Scanner input = new Scanner(System.in);
         System.out.println("Bem vindo ao sistema de competições!");

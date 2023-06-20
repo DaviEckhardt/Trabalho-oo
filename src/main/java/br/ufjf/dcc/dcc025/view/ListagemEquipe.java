@@ -5,6 +5,7 @@
 package br.ufjf.dcc.dcc025.view;
 
 import br.ufjf.dcc.dcc025.model.Equipe;
+import br.ufjf.dcc.dcc025.model.ModoTela;
 import br.ufjf.dcc.dcc025.repository.EquipeRepository;
 import br.ufjf.dcc.dcc025.repository.IRepository;
 
@@ -16,8 +17,19 @@ public class ListagemEquipe extends ListagemBase<Equipe> {
 
     private final EquipeRepository repository;
     
-    public ListagemEquipe(){
+    public ListagemEquipe(ModoTela modo){
+        super(modo);
         repository = new EquipeRepository();
+    }
+    
+    public static Equipe Selecionar(){
+        ListagemEquipe listagem = new ListagemEquipe(ModoTela.Pesquisa);
+        return listagem.selecionar();
+    }
+    
+    public static void Exibir(){
+        ListagemEquipe listagem = new ListagemEquipe(ModoTela.Listagem);
+        listagem.exibir();
     }
     @Override
     protected IRepository<Equipe> getRepository() {
@@ -26,12 +38,12 @@ public class ListagemEquipe extends ListagemBase<Equipe> {
 
     @Override
     protected boolean Cadastrar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return true;
     }
 
     @Override
     protected boolean Editar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return true;
     }
     
 }

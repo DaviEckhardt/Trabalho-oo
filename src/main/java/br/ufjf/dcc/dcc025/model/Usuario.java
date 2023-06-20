@@ -44,5 +44,12 @@ public class Usuario {
     public TipoUsuario getTipo() {
         return tipo;
     }
+
+    public boolean permissaoAdministrador(){
+        return tipo == TipoUsuario.Administrador;
+    } 
+    public boolean permissaoCapitao(){
+        return tipo == TipoUsuario.Capitao;
+    } 
 }
 
