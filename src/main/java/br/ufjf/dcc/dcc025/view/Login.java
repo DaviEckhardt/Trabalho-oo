@@ -45,7 +45,7 @@ public class Login extends javax.swing.JFrame {
 
         desenhaTela();
         this.add(this.pnlPrincipal);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.repaint();
 
         this.setVisible(true);
@@ -114,9 +114,9 @@ public class Login extends javax.swing.JFrame {
         this.setVisible(true);
         
         while(this.isShowing()){
-            this.pack();
+            this.repaint();
         }
-        System.out.println("Nao ta mais");
+        System.out.println(usuario);
         return usuario;            
     }
 

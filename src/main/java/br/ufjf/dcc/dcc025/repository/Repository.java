@@ -5,7 +5,6 @@
 package br.ufjf.dcc.dcc025.repository;
 
 
-import br.ufjf.dcc.dcc025.model.Equipe;
 import br.ufjf.dcc.dcc025.utils.Arquivo;
 import com.google.gson.reflect.TypeToken;
 
@@ -21,10 +20,9 @@ import com.google.gson.Gson;
  */
 public abstract class Repository<T> implements IRepository<T> {
     private String PATH = DIRECTORY+ File.separator;
-
-    public Repository(String entity) {
-        //Type tipo = new TypeToken<T>(){}.getType();
-        PATH += entity + ".json";
+    protected abstract Type getTipoLista();
+    public Repository(String entidade) {
+        PATH += entidade + ".json";
         
         File diretorio = new File(DIRECTORY);
         if(!diretorio.exists())
@@ -45,9 +43,8 @@ public abstract class Repository<T> implements IRepository<T> {
         String json = Arquivo.read(PATH);
 
         List<T> itens = new ArrayList<>();
-        if(!json.trim().equals("")) {
-
-            Type tipoLista = new TypeToken<List<Equipe>>(){}.getType();
+        if(!json.trim().equals("")) {                       
+            Type tipoLista = getTipoLista();
             itens = gson.fromJson(json, tipoLista);
 
             if (itens == null)

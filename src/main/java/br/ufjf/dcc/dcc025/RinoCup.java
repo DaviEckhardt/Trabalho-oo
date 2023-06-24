@@ -15,6 +15,8 @@ import br.ufjf.dcc.dcc025.view.ListagemEquipe;
 import br.ufjf.dcc.dcc025.model.Equipe;
 import br.ufjf.dcc.dcc025.model.Categoria;
 import java.util.Scanner;
+import java.util.concurrent.CountDownLatch;
+
 import br.ufjf.dcc.dcc025.model.Email;
 import br.ufjf.dcc.dcc025.exception.EmailException;
 
@@ -27,7 +29,7 @@ public class RinoCup {
   
     public static void main(String[] args) {
         LoginController.Logar();
-        
+        System.out.println("TA QQQ");
         Equipe equipe = ListagemEquipe.Selecionar();
         System.out.println(equipe);
         

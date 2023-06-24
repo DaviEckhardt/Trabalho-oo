@@ -47,7 +47,7 @@ public abstract class ListagemBase<T> extends JFrame {
     private void initComponents() {
         this.setResizable(false);
         this.setSize(VWIDTH,VHEIGHT);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);       
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);       
 
         this.pnlPrincipal = new JPanel();
         this.pnlPrincipal.setLayout(new BorderLayout());
@@ -56,7 +56,6 @@ public abstract class ListagemBase<T> extends JFrame {
         desenhaGrid();
         desenhaRodape();
         this.add(this.pnlPrincipal);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.repaint();
     }
 

@@ -5,6 +5,9 @@
 package br.ufjf.dcc.dcc025.repository;
 
 import br.ufjf.dcc.dcc025.model.Competidor;
+import br.ufjf.dcc.dcc025.model.Usuario;
+import com.google.gson.reflect.TypeToken;
+import java.lang.reflect.Type;
 import java.util.List;
 
 /**
@@ -28,5 +31,10 @@ public class CompetidorRepository extends Repository<Competidor> {
             }
         }        
         save(list);
+    }
+
+    @Override
+    protected Type getTipoLista() {
+        return new TypeToken<List<Competidor>>(){}.getType();
     }
 }
