@@ -10,6 +10,8 @@ import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JButton;
+import java.awt.BorderLayout;
 
 public class teste extends JFrame {
     
@@ -19,11 +21,11 @@ public class teste extends JFrame {
         super("Interface Gráfica com Imagem de Fundo");
         
         // Carrega a imagem de fundo
-        imagemDeFundo = new ImageIcon("/home/ice/TrabalhoOO/Trabalho-oo/logorinoCOLLEGERe.png").getImage();
+        imagemDeFundo = new ImageIcon("C:/Users/User/Documents/TrabalhoOO/Trabalho-oo/logorinoCOLLEGERe.png").getImage();
         
         // Configura o tamanho da janela
         Dimension tamanhoDaTela = Toolkit.getDefaultToolkit().getScreenSize();
-        setSize(tamanhoDaTela.width, tamanhoDaTela.height);
+        setSize(tamanhoDaTela.width/3, tamanhoDaTela.height/3);
         
         // Adiciona o painel personalizado à janela
         PainelComImagemDeFundo painel = new PainelComImagemDeFundo();
@@ -32,6 +34,17 @@ public class teste extends JFrame {
     
     // Painel personalizado com imagem de fundo
     private class PainelComImagemDeFundo extends JPanel {
+        
+        private JButton botaoBemVindo;
+        
+        public PainelComImagemDeFundo() {
+            setLayout(new BorderLayout()); // Define o layout do painel como BorderLayout
+            
+            botaoBemVindo = new JButton("Bem vindo(a)");
+            botaoBemVindo.setPreferredSize(new Dimension(10, 30));
+            add(botaoBemVindo, BorderLayout.SOUTH);
+            
+        }
         
         @Override
         protected void paintComponent(Graphics g) {
