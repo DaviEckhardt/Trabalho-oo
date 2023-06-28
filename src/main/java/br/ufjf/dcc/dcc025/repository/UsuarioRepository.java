@@ -4,7 +4,6 @@
  */
 package br.ufjf.dcc.dcc025.repository;
 
-import br.ufjf.dcc.dcc025.model.TipoUsuario;
 import br.ufjf.dcc.dcc025.model.Usuario;
 import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
@@ -17,8 +16,7 @@ import java.util.List;
 public class UsuarioRepository extends Repository<Usuario>  {
 
     public UsuarioRepository() {
-        super("usuario");
-        save(new Usuario(1, "gabriel", "gabriel", "123", TipoUsuario.Administrador));
+        super("usuario");        
     }
 
     public Usuario obterPorLoginSenha(String login, String senha){
@@ -28,8 +26,10 @@ public class UsuarioRepository extends Repository<Usuario>  {
         List<Usuario> list = findAll();
 
         for (int i = 0; i < list.size(); i++) {
-            if(list.get(i).getLogin().equals(login) && list.get(i).getSenha().equals(senha))
-                return list.get(i);
+            Usuario usuario = list.get(i);
+            
+            if((usuario.getLogin().equals(login) || usuario.getEmail().equals(login)) && usuario.getSenha().equals(senha))
+                return usuario;
         }       
         
         return null;
@@ -51,5 +51,4 @@ public class UsuarioRepository extends Repository<Usuario>  {
     protected Type getTipoLista() {
         return new TypeToken<List<Usuario>>(){}.getType();
     }
-    
 }

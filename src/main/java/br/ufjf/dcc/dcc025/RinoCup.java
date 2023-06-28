@@ -19,6 +19,7 @@ import java.util.concurrent.CountDownLatch;
 
 import br.ufjf.dcc.dcc025.model.Email;
 import br.ufjf.dcc.dcc025.exception.EmailException;
+import br.ufjf.dcc.dcc025.view.UsuarioCadastro;
 
 /**
  *
@@ -28,8 +29,13 @@ public class RinoCup {
 
   
     public static void main(String[] args) {
+        UsuarioCadastro cad = new UsuarioCadastro();
+        cad.pack();
+        cad.setVisible(true);
+        //cad.
+        LoginController.Init();
         LoginController.Logar();
-        System.out.println("TA QQQ");
+        
         Equipe equipe = ListagemEquipe.Selecionar();
         System.out.println(equipe);
         

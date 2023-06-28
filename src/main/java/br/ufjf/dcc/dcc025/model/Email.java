@@ -11,10 +11,10 @@ public class Email {
     private String dominio;
 
 
-    public Email(String email) throws EmailException {
-        setEmail(email);
+    public Email(String text) throws EmailException {
+        setEmail(text);
     }
-
+    
     private boolean isValidEmail(String email) {
         String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
         Pattern pattern = Pattern.compile(emailRegex);
@@ -27,7 +27,7 @@ public class Email {
     }
 
     public void setEmail(String email) throws EmailException {
-        if(! isValidEmail(email))
+        if(!isValidEmail(email))
             throw new EmailException();
 
         this.email = email;

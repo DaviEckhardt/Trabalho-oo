@@ -16,13 +16,15 @@ package br.ufjf.dcc.dcc025.model;
  */
 
 public enum Categoria {
+    Sistema(0, "Sistema"),
     VSS(1, "VSS"),
     MiniSumo(2, "Mini Sumo"),
     SumoLego(3,"Sumo Lego"),
     SPL(4, "SPL"),
     Seguidor(5, "Seguidor de Linha"),
     Perseguidor(6, "Perseguidor de Linha"),
-    Combate(7, "Combate");
+    Combate(7, "Combate"),
+    Gerencia(8, "Gerência");
     
     private final int id;
     private final String nome;

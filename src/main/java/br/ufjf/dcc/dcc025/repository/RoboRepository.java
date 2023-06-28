@@ -5,7 +5,6 @@
 package br.ufjf.dcc.dcc025.repository;
 
 import br.ufjf.dcc.dcc025.model.Robo;
-import br.ufjf.dcc.dcc025.model.Usuario;
 import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.List;
@@ -14,8 +13,7 @@ import java.util.List;
  *
  * @author ice
  */
-public class RoboRepository extends Repository<Robo>{
-    
+public class RoboRepository extends Repository<Robo>{    
     public RoboRepository() {
         super("robo");
     }
@@ -32,7 +30,7 @@ public class RoboRepository extends Repository<Robo>{
         }        
         save(list);
     }
-
+    
     @Override
     protected Type getTipoLista() {
         return new TypeToken<List<Robo>>(){}.getType();

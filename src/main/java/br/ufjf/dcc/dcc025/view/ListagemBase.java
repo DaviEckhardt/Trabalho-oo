@@ -34,6 +34,7 @@ public abstract class ListagemBase<T> extends JFrame {
     protected abstract IRepository<T> getRepository();
     protected abstract boolean Cadastrar();
     protected abstract boolean Editar();
+    protected abstract boolean PermissaoRemover();
     
     protected ModoTela Modo;
     
@@ -68,9 +69,10 @@ public abstract class ListagemBase<T> extends JFrame {
         JPanel painelTextField = new JPanel(new GridLayout(0, 1));
         JPanel painelButton = new JPanel(new GridLayout(0, 1));
         
-        JButton btnPesquisa = new JButton();      
-        btnPesquisa.setIcon(ImageUtils.CarregarImagem("search.png", 16, 16)); 
-        
+        JButton btnPesquisa = new JButton("Pesquisar");      
+        btnPesquisa.addActionListener((ActionEvent arg0) -> {
+            Filtrar();
+        });
         edtPesquisa = new JTextField(40);
         painelTextField.add(edtPesquisa, BorderLayout.CENTER);
         painelButton.add(btnPesquisa, BorderLayout.EAST);        
@@ -101,11 +103,13 @@ public abstract class ListagemBase<T> extends JFrame {
     private void desenhaRodape() {
         JPanel painelBotoes = new JPanel();
 
-        JButton btnSelecionar = new JButton("Selecionar");
-        btnSelecionar.addActionListener((ActionEvent arg0) -> {
-            Escolher();
-        });
-        painelBotoes.add(btnSelecionar, BorderLayout.EAST);
+        if(Modo == ModoTela.Pesquisa){            
+            JButton btnSelecionar = new JButton("Selecionar");
+            btnSelecionar.addActionListener((ActionEvent arg0) -> {
+                Escolher();
+            });
+            painelBotoes.add(btnSelecionar, BorderLayout.EAST);
+        }
         
         JButton btnCadastrar = new JButton("Cadastrar");
         btnCadastrar.addActionListener((ActionEvent arg0) -> {
@@ -124,14 +128,17 @@ public abstract class ListagemBase<T> extends JFrame {
             Remover();
         });
         painelBotoes.add(btnRemover, BorderLayout.EAST);
-        
-
-        
+                
         pnlPrincipal.add(painelBotoes, BorderLayout.SOUTH);
     }
     
 
     protected boolean Remover(){
+        if(!PermissaoRemover()){
+            JOptionPane.showMessageDialog(this, "Você não possui permissão para remover!");
+            return false;
+        }
+        
         int index = jItens.getSelectedIndex();
         if(index != -1){
             T item = jItens.getModel().getElementAt(index);
@@ -148,14 +155,17 @@ public abstract class ListagemBase<T> extends JFrame {
         }
         this.dispose();
     };
-    
-    public void Carregar(){         
+    public void Carregar(){    
+        Carregar("");
+    }
+    public void Carregar(String filtro){         
         try {
             List<T> dados = getRepository().findAll();
             
             DefaultListModel<T> modelo = new DefaultListModel<>();
             
             for (T item : dados) {
+                if(filtro.isBlank() || item.toString().contains(filtro))
                 modelo.addElement(item);
             }
             
@@ -183,4 +193,8 @@ public abstract class ListagemBase<T> extends JFrame {
     private JTextField edtPesquisa;
     private JList<T> jItens;
     private JPanel pnlPrincipal;
+
+    private void Filtrar() {
+        Carregar(edtPesquisa.getText());
+    }
 }

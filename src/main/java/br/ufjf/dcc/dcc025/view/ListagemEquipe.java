@@ -4,6 +4,7 @@
  */
 package br.ufjf.dcc.dcc025.view;
 
+import br.ufjf.dcc.dcc025.controller.LoginController;
 import br.ufjf.dcc.dcc025.model.Equipe;
 import br.ufjf.dcc.dcc025.model.ModoTela;
 import br.ufjf.dcc.dcc025.repository.EquipeRepository;
@@ -44,6 +45,11 @@ public class ListagemEquipe extends ListagemBase<Equipe> {
     @Override
     protected boolean Editar() {
         return true;
+    }
+
+    @Override
+    protected boolean PermissaoRemover() {
+        return LoginController.getUsuarioLogado().permissaoAdministrador() || LoginController.getUsuarioLogado().permissaoCapitao();
     }
     
 }

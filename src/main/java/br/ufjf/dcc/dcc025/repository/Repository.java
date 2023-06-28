@@ -6,7 +6,6 @@ package br.ufjf.dcc.dcc025.repository;
 
 
 import br.ufjf.dcc.dcc025.utils.Arquivo;
-import com.google.gson.reflect.TypeToken;
 
 import java.io.File;
 import java.lang.reflect.Type;

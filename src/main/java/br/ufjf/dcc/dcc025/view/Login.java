@@ -15,6 +15,7 @@ import java.util.Arrays;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -54,12 +55,11 @@ public class Login extends javax.swing.JFrame {
     private void desenhaTela() {
         JPanel painelLogin;
         painelLogin = new JPanel();
-        painelLogin.setBorder(BorderFactory.createTitledBorder("Login"));
         //painelLogin.setPreferredSize(new Dimension(VWIDTH, 50));
         
-        JPanel painelLoginField = new JPanel(new GridLayout(0, 1));
-        JPanel painelSenhaField = new JPanel(new GridLayout(0, 1));
-        JPanel painelButton = new JPanel(new GridLayout(0, 1));
+        JPanel painelLoginField = new JPanel(new GridLayout(2, 1));
+        JPanel painelSenhaField = new JPanel(new GridLayout(2, 1));
+        JPanel painelButton = new JPanel(new GridLayout(0, 2));
         
         JButton btnLogin = new JButton("Entrar");     
         btnLogin.addActionListener((ActionEvent arg) -> {
@@ -73,9 +73,14 @@ public class Login extends javax.swing.JFrame {
         });             
         painelButton.add(btnCancelar, BorderLayout.CENTER); 
                 
-        edtLogin = new JTextField(20);
+        edtLogin = new JTextField(20);        
         edtSenha = new JPasswordField(20);
+        
+        JLabel labelLogin = new JLabel("Email ou login");
+        JLabel labelSenha = new JLabel("Senha");
+        painelLoginField.add(labelLogin, BorderLayout.NORTH);
         painelLoginField.add(edtLogin, BorderLayout.CENTER);
+        painelSenhaField.add(labelSenha, BorderLayout.NORTH);
         painelSenhaField.add(edtSenha, BorderLayout.CENTER);
         
         painelButton.add(btnCancelar, BorderLayout.CENTER);  
