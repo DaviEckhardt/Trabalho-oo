@@ -6,17 +6,21 @@ package br.ufjf.dcc.dcc025.model;
     Gabriel Cordeiro Tavares - 202265163A
 */
 
-public class Equipe {
+public class Equipe implements IEntidadeRepository {
     int id;
     int capitaoId;
     String nome;
     String cidade;
 
-    public Equipe(int id, String nome, String cidade, int capitaoId) {
-        this.id = id;
+    public Equipe(String nome, String cidade, int capitaoId) {
         this.capitaoId = capitaoId;
         this.nome = nome;
         this.cidade = cidade;
+    }
+    
+    public Equipe(int id, String nome, String cidade, int capitaoId) {
+        this(nome, cidade, capitaoId);
+        this.id = id;
     }
 
     public int getCapitaoId() {
@@ -27,10 +31,12 @@ public class Equipe {
         this.capitaoId = capitaoId;
     }
 
+    @Override
     public int getId() {
         return id;
     }
 
+    @Override
     public void setId(int id) {
         this.id = id;
     }

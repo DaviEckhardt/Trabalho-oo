@@ -14,24 +14,30 @@ package br.ufjf.dcc.dcc025.model;
  *
  * @author Davi
  */
-public class Robo {
+public class Robo implements IEntidadeRepository {
 
     int id;
     String nome;
     int equipeId;
-    int categoriaId;
+    Categoria categoria;
 
-    public Robo(int id, String nome, int equipeId, int categoriaId) {
-        this.id = id;
+    public Robo(String nome, int equipeId, Categoria categoria) {
         this.nome = nome;
         this.equipeId = equipeId;
-        this.categoriaId = categoriaId;
+        this.categoria = categoria;
+    }
+    
+    public Robo(int id, String nome, int equipeId, Categoria categoria) {
+        this(nome, equipeId, categoria);
+        this.id = id;
     }
 
+    @Override
     public int getId() {
         return id;
     }
 
+    @Override
     public void setId(int id) {
         this.id = id;
     }
@@ -52,12 +58,12 @@ public class Robo {
         this.equipeId = equipeId;
     }
 
-    public int getCategoriaId() {
-        return categoriaId;
+    public Categoria getCategoria() {
+        return categoria;
     }
 
-    public void setCategoriaId(int categoriaId) {
-        this.categoriaId = categoriaId;
+    public void setCategoriaId(Categoria categoria) {
+        this.categoria = categoria;
     }
 
     

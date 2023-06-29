@@ -4,12 +4,13 @@
  */
 package br.ufjf.dcc.dcc025.repository;
 import java.util.List;
+import br.ufjf.dcc.dcc025.model.IEntidadeRepository;
 /**
  *
  * @author Gabriel
  * @param <T>
  */
-public interface IRepository<T> {
+public interface IRepository<T extends IEntidadeRepository> {
     String DIRECTORY = "data";
     public void save(T item);
     public void save(List<T> itens);

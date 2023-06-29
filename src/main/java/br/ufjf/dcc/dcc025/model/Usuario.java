@@ -1,6 +1,6 @@
 package br.ufjf.dcc.dcc025.model;
 
-public class Usuario {
+public class Usuario implements IEntidadeRepository {
     int id;
     String nome;
     Email email;
@@ -33,6 +33,7 @@ public class Usuario {
         return new Usuario(id, nome, login, senha, TipoUsuario.Competidor, categoria, equipeId);
     }
 
+    @Override
     public int getId() {
         return id;
     }
@@ -70,5 +71,30 @@ public class Usuario {
     public boolean permissaoCapitao(){
         return tipo == TipoUsuario.Capitao;
     } 
+
+    @Override
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setEmail(Email email) {
+        this.email = email;
+    }    
+    
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+       
+    public void getCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+    
+    public void setEquipeId(int equipeId) {
+        this.equipeId = equipeId;
+    }
 }
 

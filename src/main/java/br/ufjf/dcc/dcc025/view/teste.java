@@ -17,8 +17,6 @@ import java.awt.BorderLayout;
 import java.io.File;
 import java.awt.event.ActionEvent;
 import java.awt.*;
-import br.ufjf.dcc.dcc025.model.ModoTela;
-import java.awt.event.ActionListener;
 
 public class teste extends JFrame {
 
@@ -60,10 +58,22 @@ public class teste extends JFrame {
             JButton chave = new JButton("Ver o chaveamento");
             
             
-            equipes.addActionListener( ListagemEquipe.Exibir());
-            robos.addActionListener( ListagemRobo.Exibir());
-            participantes.addActionListener( ListagemCompetidor.Exibir());
-            chave.addActionListener( chav.run());
+            equipes.addActionListener((e) -> {
+                ListagemEquipe.Exibir();
+            }); 
+            
+            robos.addActionListener((e) -> {
+                ListagemRobo.Exibir();
+            });  
+            
+            participantes.addActionListener((e) -> {
+                ListagemUsuario.Exibir();
+            });
+            
+            chave.addActionListener( (e)-> {
+                chav chaveamento = new chav();
+                chaveamento.setVisible(true);
+            });
                     
                     
             painel.add(equipes);
@@ -75,25 +85,22 @@ public class teste extends JFrame {
             
             add(painel, BorderLayout.SOUTH);
 
-            botaoBemVindo.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    
-                }
+            botaoBemVindo.addActionListener((ActionEvent e) -> {
             });
-}
+        }
 
-@Override
-protected void paintComponent(Graphics g) {
+        @Override
+        protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-            
+
             // Desenha a imagem de fundo
             g.drawImage(imagemDeFundo, 0, 0, getWidth(), getHeight(), this);
-        }
+            }
     }
-    
+
     public static void main(String[] args) {
-        teste janela = new teste();
-        janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        janela.setVisible(true);
+            teste janela = new teste();
+            janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            janela.setVisible(true);
     }
 }

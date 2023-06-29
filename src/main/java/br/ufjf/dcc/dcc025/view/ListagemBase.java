@@ -1,5 +1,6 @@
 package br.ufjf.dcc.dcc025.view;
 import br.ufjf.dcc.dcc025.controller.AtualizaDadosListagem;
+import br.ufjf.dcc.dcc025.model.IEntidadeRepository;
 import br.ufjf.dcc.dcc025.model.ModoTela;
 import br.ufjf.dcc.dcc025.model.TipoUsuario;
 import java.awt.BorderLayout;
@@ -27,7 +28,7 @@ import java.awt.Toolkit;
  * @author Gabriel
  * @param <T>
  */
-public abstract class ListagemBase<T> extends JFrame {
+public abstract class ListagemBase<T extends IEntidadeRepository> extends JFrame {
     private final int VWIDTH = 800;
     private final int VHEIGHT = 600;
    

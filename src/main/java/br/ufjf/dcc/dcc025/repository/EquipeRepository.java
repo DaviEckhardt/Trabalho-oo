@@ -11,27 +11,11 @@ import java.util.List;
  */
 public class EquipeRepository extends Repository<Equipe> {
     public EquipeRepository(){
-        super("equipe");     
-        
-        save(new Equipe(1, "RINO", "JF", 1));
-    }
+        super("equipe");             
+    }   
     
-    @Override
-    public void remove(Equipe item) {
-        List<Equipe> list = findAll();
-        
-        for (int i = 0; i < list.size(); i++) {
-            if(list.get(i).getId() == item.getId()){
-                list.remove(i);
-                break;
-            }
-        }        
-        save(list);
-    }
-
     @Override
     protected Type getTipoLista() {
         return new TypeToken<List<Equipe>>(){}.getType();
     }
-
 }
