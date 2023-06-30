@@ -5,6 +5,7 @@
 package br.ufjf.dcc.dcc025.view;
 
 import br.ufjf.dcc.dcc025.controller.LoginController;
+import br.ufjf.dcc.dcc025.model.IPesquisa;
 import br.ufjf.dcc.dcc025.model.ModoTela;
 import br.ufjf.dcc.dcc025.model.Usuario;
 import br.ufjf.dcc.dcc025.repository.IRepository;
@@ -19,13 +20,16 @@ public class ListagemUsuario extends ListagemBase<Usuario> {
     private final UsuarioRepository repository;
     
     public ListagemUsuario(ModoTela modo){
-        super(modo);
+        this(modo, null);
+    }
+    public ListagemUsuario(ModoTela modo, IPesquisa tela){
+        super(modo, tela);
         repository = new UsuarioRepository();
     }
     
-    public static Usuario Selecionar(){
-        ListagemUsuario listagem = new ListagemUsuario(ModoTela.Pesquisa);
-        return listagem.selecionar();
+    public static void Selecionar(IPesquisa tela){
+        ListagemUsuario listagem = new ListagemUsuario(ModoTela.Pesquisa, tela);
+        listagem.exibir();
     }
     
     public static void Exibir(){

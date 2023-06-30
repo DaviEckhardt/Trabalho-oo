@@ -1,6 +1,7 @@
 package br.ufjf.dcc.dcc025.view;
 import br.ufjf.dcc.dcc025.controller.AtualizaDadosListagem;
 import br.ufjf.dcc.dcc025.model.IEntidadeRepository;
+import br.ufjf.dcc.dcc025.model.IPesquisa;
 import br.ufjf.dcc.dcc025.model.ModoTela;
 import br.ufjf.dcc.dcc025.model.TipoUsuario;
 import java.awt.BorderLayout;
@@ -44,13 +45,17 @@ public abstract class ListagemBase<T extends IEntidadeRepository> extends JFrame
     
     public ModoTela Modo;
     
-    protected T itemSelecionado;
+    public T itemSelecionado;
+    
     public ListagemBase(ModoTela modo) {
+        this(modo, null);
+    }
+    public ListagemBase(ModoTela modo, IPesquisa telaPesquisa) {
         super(modo == ModoTela.Listagem ? "Listagem" : "Pesquisa");
-        this.addWindowListener(new AtualizaDadosListagem(this));
+        this.addWindowListener(new AtualizaDadosListagem(this, telaPesquisa));
         initComponents();
     }
-
+    
     private void initComponents() {
         this.setResizable(false);
         this.setSize(VWIDTH,VHEIGHT);
@@ -185,15 +190,6 @@ public abstract class ListagemBase<T extends IEntidadeRepository> extends JFrame
         this.setVisible(true);
     }
    
-    protected T selecionar(){
-        this.pack();
-        this.setVisible(true);
-        
-        while(this.isShowing()){
-            this.repaint();
-        }
-        return itemSelecionado;
-    }
     private JTextField edtPesquisa;
     private JList<T> jItens;
     private JPanel pnlPrincipal;

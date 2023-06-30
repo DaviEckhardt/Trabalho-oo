@@ -4,33 +4,26 @@
  */
 package br.ufjf.dcc.dcc025.view;
 
-import br.ufjf.dcc.dcc025.controller.AtualizaDadosBase;
-import br.ufjf.dcc.dcc025.exception.EmailException;
 import br.ufjf.dcc.dcc025.model.Categoria;
-import br.ufjf.dcc.dcc025.model.Email;
 import br.ufjf.dcc.dcc025.model.Equipe;
+import br.ufjf.dcc.dcc025.model.IPesquisa;
 import br.ufjf.dcc.dcc025.model.Robo;
-import br.ufjf.dcc.dcc025.model.Usuario;
 import br.ufjf.dcc.dcc025.repository.RoboRepository;
-import br.ufjf.dcc.dcc025.repository.UsuarioRepository;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
-import java.util.Arrays;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 /**
  *
  * @author Gabriel
  */
-public class RoboCadastro extends CadastroBase { 
+public class RoboCadastro extends CadastroBase implements IPesquisa<Equipe> { 
     private int id = 0;
     private JTextField edtNome;
     private JComboBox cbbCategoria;
@@ -86,7 +79,7 @@ public class RoboCadastro extends CadastroBase {
         
         JButton btnEscolherEquipe = new JButton("Escolher Equipe");
         btnEscolherEquipe.addActionListener((ActionEvent arg0) -> {
-            EscolherEquipe();
+            ListagemEquipe.Selecionar(this);
         });
         painelEquipeButton.add(btnEscolherEquipe, BorderLayout.EAST);
       
@@ -109,15 +102,6 @@ public class RoboCadastro extends CadastroBase {
 
         this.setVisible(false);
         this.dispose();        
-    }
-
-    private void EscolherEquipe() {
-        Equipe equipe = ListagemEquipe.Selecionar();
-        
-        if(equipe != null)
-            equipeId = equipe.getId();
-        else
-            equipeId = 0;
     }
 
     @Override
@@ -145,4 +129,12 @@ public class RoboCadastro extends CadastroBase {
         cbbCategoria.setSelectedItem(robo.getCategoria());
         equipeId = robo.getEquipeId();
     }     
+
+    @Override
+    public void ReceberPesquisa(Equipe equipe) {
+        if(equipe != null)
+            equipeId = equipe.getId();
+        else
+            equipeId = 0;
+    }
 }

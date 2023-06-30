@@ -6,6 +6,7 @@ package br.ufjf.dcc.dcc025.view;
 
 import br.ufjf.dcc.dcc025.controller.LoginController;
 import br.ufjf.dcc.dcc025.model.Equipe;
+import br.ufjf.dcc.dcc025.model.IPesquisa;
 import br.ufjf.dcc.dcc025.model.ModoTela;
 import br.ufjf.dcc.dcc025.repository.EquipeRepository;
 import br.ufjf.dcc.dcc025.repository.IRepository;
@@ -23,14 +24,17 @@ public class ListagemEquipe extends ListagemBase<Equipe> {
     private final EquipeRepository repository;
     
     public ListagemEquipe(ModoTela modo){
+        this(modo, null);
+    }
+    
+    public ListagemEquipe(ModoTela modo, IPesquisa tela){
         super(modo);
         repository = new EquipeRepository();
     }
     
-    public static Equipe Selecionar(){
-        ListagemEquipe listagem = new ListagemEquipe(ModoTela.Pesquisa);
-        listagem.selecionar();                    
-        return listagem.itemSelecionado;
+    public static void Selecionar(IPesquisa tela){
+        ListagemEquipe listagem = new ListagemEquipe(ModoTela.Pesquisa, tela);
+        listagem.exibir();          
     }
     
     public static void Exibir(){

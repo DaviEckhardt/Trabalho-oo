@@ -9,6 +9,7 @@ import br.ufjf.dcc.dcc025.exception.EmailException;
 import br.ufjf.dcc.dcc025.model.Categoria;
 import br.ufjf.dcc.dcc025.model.Email;
 import br.ufjf.dcc.dcc025.model.Equipe;
+import br.ufjf.dcc.dcc025.model.IPesquisa;
 import br.ufjf.dcc.dcc025.model.Usuario;
 import br.ufjf.dcc.dcc025.repository.UsuarioRepository;
 import java.awt.BorderLayout;
@@ -32,7 +33,7 @@ import javax.swing.JTextField;
  *
  * @author Gabriel
  */
-public class UsuarioCadastro extends CadastroBase { 
+public class UsuarioCadastro extends CadastroBase implements IPesquisa<Equipe> { 
     private int id = 0;
     private JTextField edtNome;
     private JTextField edtEmail;
@@ -102,7 +103,7 @@ public class UsuarioCadastro extends CadastroBase {
         
         JButton btnEscolherEquipe = new JButton("Escolher Equipe");
         btnEscolherEquipe.addActionListener((ActionEvent arg0) -> {
-            EscolherEquipe();
+            ListagemEquipe.Selecionar(this);
         });
         painelEquipeButton.add(btnEscolherEquipe, BorderLayout.EAST);
       
@@ -139,15 +140,6 @@ public class UsuarioCadastro extends CadastroBase {
         
         this.setVisible(false);
         this.dispose();
-    }
-
-    private void EscolherEquipe() {
-        Equipe equipe = ListagemEquipe.Selecionar();
-        
-        if(equipe != null)
-            equipeId = equipe.getId();
-        else
-            equipeId = 0;
     }
 
     @Override
@@ -188,5 +180,13 @@ public class UsuarioCadastro extends CadastroBase {
         edtSenha.setText(usuario.getSenha());
         cbbCategoria.setSelectedItem(usuario.getCategoria());
         equipeId = usuario.getEquipeId();
+    }
+
+    @Override
+    public void ReceberPesquisa(Equipe equipe) {
+        if(equipe != null)
+            equipeId = equipe.getId();
+        else
+            equipeId = 0;
     }
 }

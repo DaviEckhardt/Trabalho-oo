@@ -4,25 +4,32 @@
  */
 package br.ufjf.dcc.dcc025.controller;
 
+import br.ufjf.dcc.dcc025.model.IPesquisa;
 import br.ufjf.dcc.dcc025.model.ModoTela;
 import br.ufjf.dcc.dcc025.utils.ScreenUtils;
 import br.ufjf.dcc.dcc025.view.ListagemBase;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 
 /**
  *
  * @author Gabriel
  */
 public class AtualizaDadosListagem extends AtualizaDadosBase {
-    private ListagemBase listagem;
-    
-    public AtualizaDadosListagem(ListagemBase tela){
+    private final ListagemBase listagem;
+    private final IPesquisa telaDevolucao;
+    public AtualizaDadosListagem(ListagemBase tela, IPesquisa telaDevolucao){
         super(tela);
         listagem = tela;
+        this.telaDevolucao = telaDevolucao;
     }
     @Override
     public void windowOpened(WindowEvent e) {
         listagem.Filtrar();
-    }        
+    }   
+    
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+        if(telaDevolucao != null)
+            telaDevolucao.ReceberPesquisa(listagem.itemSelecionado);
+    }
 }
