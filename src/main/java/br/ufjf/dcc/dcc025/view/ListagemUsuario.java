@@ -35,17 +35,29 @@ public class ListagemUsuario extends ListagemBase<Usuario> {
     
     @Override
     protected IRepository<Usuario> getRepository() {
-        return new UsuarioRepository();
+        return repository;
     }
 
     @Override
     protected boolean Cadastrar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try{
+            UsuarioCadastro.Cadastrar(this);
+            return true;
+        }
+        catch(Exception e) {
+            return false;
+        }        
     }
 
     @Override
-    protected boolean Editar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    protected boolean Editar(Usuario item) {
+        try{
+            UsuarioCadastro.Editar(this,item);
+            return true;
+        }
+        catch(Exception e) {
+            return false;
+        }   
     }
 
     @Override

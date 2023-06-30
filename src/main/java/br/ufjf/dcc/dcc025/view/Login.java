@@ -94,7 +94,7 @@ public class Login extends javax.swing.JFrame {
     
     public void Entrar(){
         String login = edtLogin.getText().trim();
-        String senha = Arrays.toString(edtSenha.getPassword()).trim();
+        String senha = new String(edtSenha.getPassword());
         if(login.equals("") || senha.equals("")){
             JOptionPane.showMessageDialog(this, "login e/ou senha inválidos");
             return;

@@ -11,6 +11,7 @@ import java.util.Scanner;
  */
 public class Confrontos {
     public static void confrontos() {
+        /*
         Scanner input = new Scanner(System.in);
         System.out.println("De qual categoria será o confronto?");
         int id = RinoCup.SelecionaCategoria(input);
@@ -76,5 +77,6 @@ public class Confrontos {
         } while (id <= 0);        
         
         return id;
+*/
     }
 }

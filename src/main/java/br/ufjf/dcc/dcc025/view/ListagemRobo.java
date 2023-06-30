@@ -36,12 +36,24 @@ public class ListagemRobo extends ListagemBase<Robo> {
 
     @Override
     protected boolean Cadastrar() {
-        return false;
+        try{
+            RoboCadastro.Cadastrar(this);
+            return true;
+        }
+        catch(Exception e) {
+            return false;
+        }  
     }
 
     @Override
-    protected boolean Editar() {
-        return false;
+    protected boolean Editar(Robo item) {
+        try{
+            RoboCadastro.Editar(this,item);
+            return true;
+        }
+        catch(Exception e) {
+            return false;
+        }  
     }
     
     @Override

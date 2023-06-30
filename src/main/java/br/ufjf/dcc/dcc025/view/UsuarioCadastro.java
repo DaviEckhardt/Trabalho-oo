@@ -5,15 +5,25 @@
 package br.ufjf.dcc.dcc025.view;
 
 import br.ufjf.dcc.dcc025.controller.AtualizaDadosBase;
+import br.ufjf.dcc.dcc025.exception.EmailException;
 import br.ufjf.dcc.dcc025.model.Categoria;
+import br.ufjf.dcc.dcc025.model.Email;
+import br.ufjf.dcc.dcc025.model.Equipe;
+import br.ufjf.dcc.dcc025.model.Usuario;
+import br.ufjf.dcc.dcc025.repository.UsuarioRepository;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -22,37 +32,45 @@ import javax.swing.JTextField;
  *
  * @author Gabriel
  */
-public class UsuarioCadastro extends JFrame { 
-    
-    private JPanel pnlPrincipal;
+public class UsuarioCadastro extends CadastroBase { 
+    private int id = 0;
     private JTextField edtNome;
     private JTextField edtEmail;
     private JPasswordField edtSenha;
     private JComboBox cbbCategoria;
-    private int equipeId;
+    private int equipeId;   
     
-    
-    
+    private final UsuarioRepository repository;
+        
     public UsuarioCadastro(){
-        super("Cadastro de Usuário");      
-        this.addWindowListener(new AtualizaDadosBase(this));
-        initComponents();
-    }
+        this(null);
+    }        
+    public UsuarioCadastro(ListagemUsuario telaListagem){
+        super("Cadastro de Usuário", telaListagem);
+        repository = new UsuarioRepository();        
+    } 
     
-    private void initComponents() {
-        this.pnlPrincipal = new JPanel();
-        this.pnlPrincipal.setLayout(new BorderLayout());
-
-        desenhaTela();
-        desenhaRodape();
-        this.add(this.pnlPrincipal);
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.repaint();
-
-        this.setVisible(true);
+    public static void Cadastrar(){
+        Cadastrar(null);
     }
+    public static void Cadastrar(ListagemUsuario listagem){
+        UsuarioCadastro cadastro = new UsuarioCadastro(listagem);        
+        cadastro.pack();
+        cadastro.setVisible(true);
+    }
+    public static boolean Editar(Usuario usuario){
+        return Editar(null, usuario);
+    }
+    public static boolean Editar(ListagemUsuario listagem, Usuario usuario){
+        UsuarioCadastro cadastro = new UsuarioCadastro(listagem);        
+        cadastro.pack();
+        cadastro.setVisible(true);
+        cadastro.carregar(usuario);
+        return true;
+    }    
     
-    private void desenhaTela() {
+    @Override
+    protected void desenhaTela() {
         JPanel painelTela;
         painelTela = new JPanel(new GridLayout(0, 2));
         
@@ -96,24 +114,79 @@ public class UsuarioCadastro extends JFrame {
         this.pnlPrincipal.add(painelTela, BorderLayout.CENTER);
     }
 
-    private void desenhaRodape() {
-        JPanel painelBotoes = new JPanel();
-        
-        JButton btnSalvar = new JButton("Salvar");
-        btnSalvar.addActionListener((ActionEvent arg0) -> {
-            Salvar();
-        });
-        painelBotoes.add(btnSalvar, BorderLayout.EAST);
-        
-             
-        pnlPrincipal.add(painelBotoes, BorderLayout.SOUTH);    
-    }
 
-    private void Salvar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    @Override
+    protected void Salvar() {
+        try {
+            if(!Validar())
+                return;
+            
+            Usuario usuario;            
+            String nome = edtNome.getText();
+            Email email = new Email(edtEmail.getText());
+            String senha = new String(edtSenha.getPassword());
+            Categoria categoria = (Categoria) cbbCategoria.getSelectedItem();           
+            
+            if(categoria == Categoria.Gerencia)
+                usuario = Usuario.UsuarioCapitao(id, nome, email, senha, equipeId);
+            else
+                usuario = Usuario.UsuarioCompetidor(id, nome, email, senha, equipeId, categoria);
+            
+            repository.save(usuario);            
+        } catch (EmailException ex) {
+            // já protegido dentro do validar
+        }
+        
+        this.setVisible(false);
+        this.dispose();
     }
 
     private void EscolherEquipe() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Equipe equipe = ListagemEquipe.Selecionar();
+        
+        if(equipe != null)
+            equipeId = equipe.getId();
+        else
+            equipeId = 0;
+    }
+
+    @Override
+    protected boolean Validar() {
+        if(edtNome.getText().isBlank()){
+            JOptionPane.showMessageDialog(this, "Nome inválido!");
+            return false;
+        }
+        
+        try {            
+            Email email = new Email(edtEmail.getText());
+        } catch (EmailException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+            return false;
+        }
+        
+        if(new String(edtSenha.getPassword()).isBlank()){
+            JOptionPane.showMessageDialog(this, "Senha inválida!");
+            return false;
+        }
+        
+        if(cbbCategoria.getSelectedIndex() < 0){
+            JOptionPane.showMessageDialog(this, "Categoria inválida!");
+            return false;
+        }
+
+        if(equipeId <= 0){
+            JOptionPane.showMessageDialog(this, "Equipe inválida!");
+            return false;
+        }
+            
+        return true;
+    }
+    private void carregar(Usuario usuario) {
+        id = usuario.getId();
+        edtNome.setText(usuario.getNome());
+        edtEmail.setText(usuario.getEmail());
+        edtSenha.setText(usuario.getSenha());
+        cbbCategoria.setSelectedItem(usuario.getCategoria());
+        equipeId = usuario.getEquipeId();
     }
 }

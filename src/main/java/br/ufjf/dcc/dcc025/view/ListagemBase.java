@@ -22,7 +22,12 @@ import javax.swing.ListSelectionModel;
 
 import br.ufjf.dcc.dcc025.repository.IRepository;
 import br.ufjf.dcc.dcc025.utils.ImageUtils;
+import java.awt.Dialog;
 import java.awt.Toolkit;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.concurrent.CountDownLatch;
+import javax.swing.SwingUtilities;
 /**
  *
  * @author Gabriel
@@ -34,12 +39,12 @@ public abstract class ListagemBase<T extends IEntidadeRepository> extends JFrame
    
     protected abstract IRepository<T> getRepository();
     protected abstract boolean Cadastrar();
-    protected abstract boolean Editar();
+    protected abstract boolean Editar(T item);
     protected abstract boolean PermissaoRemover();
     
-    protected ModoTela Modo;
+    public ModoTela Modo;
     
-    private T itemSelecionado;
+    protected T itemSelecionado;
     public ListagemBase(ModoTela modo) {
         super(modo == ModoTela.Listagem ? "Listagem" : "Pesquisa");
         this.addWindowListener(new AtualizaDadosListagem(this));
@@ -104,7 +109,7 @@ public abstract class ListagemBase<T extends IEntidadeRepository> extends JFrame
     private void desenhaRodape() {
         JPanel painelBotoes = new JPanel();
 
-        if(Modo == ModoTela.Pesquisa){            
+        if(Modo == ModoTela.Pesquisa){
             JButton btnSelecionar = new JButton("Selecionar");
             btnSelecionar.addActionListener((ActionEvent arg0) -> {
                 Escolher();
@@ -156,13 +161,10 @@ public abstract class ListagemBase<T extends IEntidadeRepository> extends JFrame
         }
         this.dispose();
     };
-    public void Carregar(){    
-        Carregar("");
-    }
+
     public void Carregar(String filtro){         
         try {
             List<T> dados = getRepository().findAll();
-            
             DefaultListModel<T> modelo = new DefaultListModel<>();
             
             for (T item : dados) {
@@ -184,18 +186,27 @@ public abstract class ListagemBase<T extends IEntidadeRepository> extends JFrame
     }
    
     protected T selecionar(){
-        exibir();
+        this.pack();
+        this.setVisible(true);
+        
         while(this.isShowing()){
-            this.pack();
-            //espera a tela fechar;
-        }   
+            this.repaint();
+        }
         return itemSelecionado;
     }
     private JTextField edtPesquisa;
     private JList<T> jItens;
     private JPanel pnlPrincipal;
 
-    private void Filtrar() {
+    public void Filtrar() {
         Carregar(edtPesquisa.getText());
+    }
+
+    private void Editar() {
+        int index = jItens.getSelectedIndex();
+        if(index != -1)
+            Editar(jItens.getModel().getElementAt(index));
+        else
+            JOptionPane.showMessageDialog(this, "Selecione um item para editar!");
     }
 }

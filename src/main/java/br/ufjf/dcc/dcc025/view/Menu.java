@@ -81,7 +81,6 @@ public class Menu extends JFrame {
             painel.add(participantes);
             painel.add(chave);  
             painel.add(botaoBemVindo); 
-
             
             add(painel, BorderLayout.SOUTH);
 
@@ -100,8 +99,6 @@ public class Menu extends JFrame {
     }
 
     public static void main(String[] args) {
-            Menu janela = new Menu();
-            janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            janela.setVisible(true);
+            
     }
 }

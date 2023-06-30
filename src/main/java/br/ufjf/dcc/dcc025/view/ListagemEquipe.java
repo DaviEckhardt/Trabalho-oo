@@ -9,6 +9,10 @@ import br.ufjf.dcc.dcc025.model.Equipe;
 import br.ufjf.dcc.dcc025.model.ModoTela;
 import br.ufjf.dcc.dcc025.repository.EquipeRepository;
 import br.ufjf.dcc.dcc025.repository.IRepository;
+import java.lang.reflect.InvocationTargetException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -25,7 +29,8 @@ public class ListagemEquipe extends ListagemBase<Equipe> {
     
     public static Equipe Selecionar(){
         ListagemEquipe listagem = new ListagemEquipe(ModoTela.Pesquisa);
-        return listagem.selecionar();
+        listagem.selecionar();                    
+        return listagem.itemSelecionado;
     }
     
     public static void Exibir(){
@@ -39,12 +44,24 @@ public class ListagemEquipe extends ListagemBase<Equipe> {
 
     @Override
     protected boolean Cadastrar() {
-        return true;
+        try{
+            EquipeCadastro.Cadastrar(this);
+            return true;
+        }
+        catch(Exception e) {
+            return false;
+        }  
     }
 
     @Override
-    protected boolean Editar() {
-        return true;
+    protected boolean Editar(Equipe item) {
+        try{
+            EquipeCadastro.Editar(this, item);
+            return true;
+        }
+        catch(Exception e) {
+            return false;
+        }  
     }
 
     @Override

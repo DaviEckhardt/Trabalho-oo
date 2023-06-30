@@ -72,7 +72,7 @@ public abstract class Repository<T extends IEntidadeRepository> implements IRepo
     @Override
     public void save(T item) {
         List<T> list = findAll();
-        item = genId(item);
+        item = genId(item);        
         list.add(item);
         save(list);        
     }

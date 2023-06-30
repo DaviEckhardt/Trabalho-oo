@@ -4,6 +4,7 @@
  */
 package br.ufjf.dcc.dcc025.controller;
 
+import br.ufjf.dcc.dcc025.model.ModoTela;
 import br.ufjf.dcc.dcc025.utils.ScreenUtils;
 import br.ufjf.dcc.dcc025.view.ListagemBase;
 import java.awt.event.WindowEvent;
@@ -13,45 +14,15 @@ import java.awt.event.WindowListener;
  *
  * @author Gabriel
  */
-public class AtualizaDadosListagem implements WindowListener{
+public class AtualizaDadosListagem extends AtualizaDadosBase {
     private ListagemBase listagem;
     
     public AtualizaDadosListagem(ListagemBase tela){
+        super(tela);
         listagem = tela;
     }
     @Override
     public void windowOpened(WindowEvent e) {
-        listagem.Carregar();
-    }
-
-    @Override
-    public void windowClosing(WindowEvent e) {
-        
-    }
-
-    @Override
-    public void windowClosed(WindowEvent e) {
-        
-    }
-
-    @Override
-    public void windowIconified(WindowEvent e) {
-        
-    }
-
-    @Override
-    public void windowDeiconified(WindowEvent e) {
-        
-    }
-
-    @Override
-    public void windowActivated(WindowEvent e) {
-        ScreenUtils.formWindowCenter(listagem);
-    }
-
-    @Override
-    public void windowDeactivated(WindowEvent e) {
-        
-    }
-    
+        listagem.Filtrar();
+    }        
 }

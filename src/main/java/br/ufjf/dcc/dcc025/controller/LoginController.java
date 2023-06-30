@@ -16,9 +16,9 @@ public class LoginController {
         
         try{
             repository.save(Usuario.UsuarioAdmin(1, "Gabriel", new Email("gabriel@gmail.com"), "Senha123"));
-            repository.save(Usuario.UsuarioAdmin(1, "Davi", new Email("davi@gmail.com"), "Senha123"));
-            repository.save(Usuario.UsuarioAdmin(1, "Daniel", new Email("daniel@gmail.com"), "Senha123"));
-            repository.save(Usuario.UsuarioAdmin(1, "Gleiph", new Email("gleiph@gmail.com"), "Senha123"));
+            repository.save(Usuario.UsuarioAdmin(2, "Davi", new Email("davi@gmail.com"), "Senha123"));
+            repository.save(Usuario.UsuarioAdmin(3, "Daniel", new Email("daniel@gmail.com"), "Senha123"));
+            repository.save(Usuario.UsuarioAdmin(4, "Gleiph", new Email("gleiph@gmail.com"), "Senha123"));
         } 
         catch(EmailException ex){
             JOptionPane.showMessageDialog(null, "Não foi possível iniciar o sistema!");
@@ -29,10 +29,8 @@ public class LoginController {
         Login login = new Login();
         usuarioLogado = login.Logar();
         
-        
-        
-        //if(usuarioLogado == null)
-        //    System.exit(0);
+        if(usuarioLogado == null)
+            System.exit(0);
     }
     
     public static Usuario getUsuarioLogado(){

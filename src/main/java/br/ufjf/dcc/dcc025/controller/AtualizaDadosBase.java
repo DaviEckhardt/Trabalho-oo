@@ -15,7 +15,7 @@ import java.awt.event.WindowListener;
  */
 public class AtualizaDadosBase implements WindowListener {
 
-    private Window tela;
+    private final Window tela;
     public AtualizaDadosBase(Window tela){
         this.tela = tela;
     }

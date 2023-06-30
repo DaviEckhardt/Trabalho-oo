@@ -22,14 +22,13 @@ public class UsuarioRepository extends Repository<Usuario>  {
     public Usuario obterPorLoginSenha(String login, String senha){
         if(login == null || senha == null)
             return null;
-        
         List<Usuario> list = findAll();
 
         for (int i = 0; i < list.size(); i++) {
             Usuario usuario = list.get(i);
             
-            if((usuario.getLogin().equals(login) || usuario.getEmail().equals(login)) && usuario.getSenha().equals(senha))
-                return usuario;
+            if((usuario.getLogin().equalsIgnoreCase(login) || usuario.getEmail().equalsIgnoreCase(login)) && usuario.getSenha().equals(senha))
+                return usuario;                
         }       
         
         return null;
