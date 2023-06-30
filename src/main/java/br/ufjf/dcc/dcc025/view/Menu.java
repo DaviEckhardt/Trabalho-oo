@@ -18,11 +18,11 @@ import java.io.File;
 import java.awt.event.ActionEvent;
 import java.awt.*;
 
-public class teste extends JFrame {
+public class Menu extends JFrame {
 
     private Image imagemDeFundo;
 
-    public teste() {
+    public Menu() {
         super("Interface Gráfica com Imagem de Fundo");
         addWindowListener(new AtualizaDadosBase(this));
         // Carrega a imagem de fundo
@@ -86,6 +86,7 @@ public class teste extends JFrame {
             add(painel, BorderLayout.SOUTH);
 
             botaoBemVindo.addActionListener((ActionEvent e) -> {
+                System.exit(0);
             });
         }
 
@@ -99,7 +100,7 @@ public class teste extends JFrame {
     }
 
     public static void main(String[] args) {
-            teste janela = new teste();
+            Menu janela = new Menu();
             janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             janela.setVisible(true);
     }
