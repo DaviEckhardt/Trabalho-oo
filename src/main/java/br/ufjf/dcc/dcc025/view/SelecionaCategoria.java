@@ -42,7 +42,7 @@ public class SelecionaCategoria extends JFrame {
         JLabel label = new JLabel("Selecione uma categoria:");
         panel.add(label);
 
-        JButton VSSS = new JButton("VSSS");
+        JButton vsss = new JButton("VSSS");
         JButton seguidor = new JButton("Seguidor de Linha");
         JButton mini = new JButton("Mini Sumô");
         JButton lego = new JButton("Sumô Lego");
@@ -50,7 +50,7 @@ public class SelecionaCategoria extends JFrame {
         JButton spl = new JButton("SPL");
         JButton combate = new JButton("Combate");
         
-        panel.add(VSSS);
+        panel.add(vsss);
         panel.add(seguidor);
         panel.add(mini);
         panel.add(lego);
@@ -60,32 +60,46 @@ public class SelecionaCategoria extends JFrame {
         
 
         
-        VSSS.addActionListener((e) -> {
-
+        vsss.addActionListener((e) -> {
+            Categoria categoria = Categoria.VSSS;
+            chav chaveamento = new chav(categoria);
+            chaveamento.setVisible(true);
         });
         
         seguidor.addActionListener((e) -> {
-
+            Categoria categoria = Categoria.Seguidor;
+            chav chaveamento = new chav(categoria);
+            chaveamento.setVisible(true);
         });
         
         mini.addActionListener((e) -> {
-
+            Categoria categoria = Categoria.MiniSumo;
+            chav chaveamento = new chav(categoria);
+            chaveamento.setVisible(true);
         });
         
         lego.addActionListener((e) -> {
-
+            Categoria categoria = Categoria.SumoLego;
+            chav chaveamento = new chav(categoria);
+            chaveamento.setVisible(true);
         });
 
         perseguidor.addActionListener((e) -> {
-
+            Categoria categoria = Categoria.Perseguidor;
+            chav chaveamento = new chav(categoria);
+            chaveamento.setVisible(true);
         });
         
         spl.addActionListener((e) -> {
-
+            Categoria categoria = Categoria.SPL;
+            chav chaveamento = new chav(categoria);
+            chaveamento.setVisible(true);
         });
         
         combate.addActionListener((e) -> {
-
+            Categoria categoria = Categoria.Combate;
+            chav chaveamento = new chav(categoria);
+            chaveamento.setVisible(true);
         });
 
         add(panel);

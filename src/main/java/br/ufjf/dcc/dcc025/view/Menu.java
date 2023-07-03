@@ -74,8 +74,6 @@ public class Menu extends JFrame {
             chave.addActionListener( (e)-> {
                 SelecionaCategoria sel = new SelecionaCategoria();
                 sel.setVisible(true);
-                chav chaveamento = new chav(categoria);
-                chaveamento.setVisible(true);
             });
                     
                     

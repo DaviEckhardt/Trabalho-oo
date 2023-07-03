@@ -18,15 +18,16 @@ import br.ufjf.dcc.dcc025.Confrontos;
 import br.ufjf.dcc.dcc025.model.Categoria;
 public class chav extends javax.swing.JFrame {
 
-
+    private Categoria categoria;
     public chav(Categoria categoria) {
+        this.categoria = categoria;
         initComponents();
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
-
+        
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 10), new java.awt.Dimension(0, 10), new java.awt.Dimension(32767, 10));
@@ -380,7 +381,7 @@ public class chav extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new chav(categoria).setVisible(true);
+                (new chav(categoria)).this.setVisible(true);
             }
         });
     }
