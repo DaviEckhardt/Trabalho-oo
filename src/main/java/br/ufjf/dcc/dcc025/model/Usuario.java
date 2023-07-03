@@ -96,5 +96,10 @@ public class Usuario implements IEntidadeRepository {
     public void setEquipeId(int equipeId) {
         this.equipeId = equipeId;
     }
+    
+    @Override
+    public String toString(){
+        return String.format("%d | %s | %s | %s | %s", id, nome, email.getEmail(), categoria.getNome(), tipo.name());
+    }
 }
 

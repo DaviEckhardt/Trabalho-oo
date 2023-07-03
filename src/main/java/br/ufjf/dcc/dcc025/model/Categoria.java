@@ -16,24 +16,29 @@ package br.ufjf.dcc.dcc025.model;
  */
 
 public enum Categoria {
-    Sistema("Sistema"),
-    VSS("VSS"),
-    MiniSumo("Mini Sumo"),
-    SumoLego("Sumo Lego"),
-    SPL("SPL"),
-    Seguidor("Seguidor de Linha"),
-    Perseguidor("Perseguidor de Linha"),
-    Combate("Combate"),
-    Gerencia("Gerência");
+    Sistema("Sistema", false),
+    VSSS("VSSS", true),
+    MiniSumo("Mini Sumo", true),
+    SumoLego("Sumo Lego", true),
+    SPL("SPL", true),
+    Seguidor("Seguidor de Linha", true),
+    Perseguidor("Perseguidor de Linha", true),
+    Combate("Combate", true),
+    Gerencia("Gerência", false);
     
     private final String nome;
+    private final boolean temDisputa;
 
-    private Categoria(String nome) {
+    private Categoria(String nome, boolean temDisputa) {
         this.nome = nome;
+        this.temDisputa = temDisputa;
     }
     public String getNome() {
         return nome;
     }    
+    public boolean getTemDisputa() {
+        return temDisputa;
+    }
     @Override
     public String toString(){
         return nome;

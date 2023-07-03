@@ -184,6 +184,8 @@ public class UsuarioCadastro extends CadastroBase implements IPesquisa<Equipe> {
 
     @Override
     public void ReceberPesquisa(Equipe equipe) {
+        System.out.println("Ta aqui");
+        System.out.println(equipe);
         if(equipe != null)
             equipeId = equipe.getId();
         else

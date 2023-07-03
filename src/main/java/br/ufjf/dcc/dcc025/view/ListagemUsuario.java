@@ -10,6 +10,7 @@ import br.ufjf.dcc.dcc025.model.ModoTela;
 import br.ufjf.dcc.dcc025.model.Usuario;
 import br.ufjf.dcc.dcc025.repository.IRepository;
 import br.ufjf.dcc.dcc025.repository.UsuarioRepository;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -55,6 +56,14 @@ public class ListagemUsuario extends ListagemBase<Usuario> {
 
     @Override
     protected boolean Editar(Usuario item) {
+        Usuario usuarioLogado = LoginController.getUsuarioLogado();
+        if(!usuarioLogado.permissaoCapitao() && !usuarioLogado.permissaoAdministrador() &&
+                LoginController.getUsuarioLogado().getId() != item.getId()){
+            JOptionPane.showMessageDialog(this, "Você não tem permissão para alterar esse usuário!");
+            return false;
+        }
+            
+        
         try{
             UsuarioCadastro.Editar(this,item);
             return true;
@@ -67,6 +76,14 @@ public class ListagemUsuario extends ListagemBase<Usuario> {
     @Override
     protected boolean PermissaoRemover() {
         return LoginController.getUsuarioLogado().permissaoAdministrador();
+    }
+
+    @Override
+    protected boolean PreFiltro(Usuario item) {
+        if(LoginController.getUsuarioLogado().permissaoAdministrador())
+           return true;
+        
+        return LoginController.getUsuarioLogado().getEquipeId() == item.getEquipeId();
     }
     
 }

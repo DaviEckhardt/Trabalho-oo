@@ -42,16 +42,14 @@ public abstract class ListagemBase<T extends IEntidadeRepository> extends JFrame
     protected abstract boolean Cadastrar();
     protected abstract boolean Editar(T item);
     protected abstract boolean PermissaoRemover();
-    
+    protected abstract boolean PreFiltro(T item);
     public ModoTela Modo;
     
     public T itemSelecionado;
     
-    public ListagemBase(ModoTela modo) {
-        this(modo, null);
-    }
     public ListagemBase(ModoTela modo, IPesquisa telaPesquisa) {
         super(modo == ModoTela.Listagem ? "Listagem" : "Pesquisa");
+        this.Modo = modo;
         this.addWindowListener(new AtualizaDadosListagem(this, telaPesquisa));
         initComponents();
     }
@@ -112,14 +110,16 @@ public abstract class ListagemBase<T extends IEntidadeRepository> extends JFrame
     }
 
     private void desenhaRodape() {
-        JPanel painelBotoes = new JPanel();
+        JPanel painelBotoes = new JPanel(new GridLayout(0, 4));
 
         if(Modo == ModoTela.Pesquisa){
+            System.out.println("Entrou ");
             JButton btnSelecionar = new JButton("Selecionar");
             btnSelecionar.addActionListener((ActionEvent arg0) -> {
                 Escolher();
             });
             painelBotoes.add(btnSelecionar, BorderLayout.EAST);
+            this.repaint();
         }
         
         JButton btnCadastrar = new JButton("Cadastrar");
@@ -163,8 +163,10 @@ public abstract class ListagemBase<T extends IEntidadeRepository> extends JFrame
         int index = jItens.getSelectedIndex();
         if(index != -1){
             itemSelecionado = jItens.getModel().getElementAt(index);
-        }
-        this.dispose();
+            this.dispose();
+        }  
+        else
+            JOptionPane.showMessageDialog(this, "Selecione um item!");
     };
 
     public void Carregar(String filtro){         
@@ -173,8 +175,8 @@ public abstract class ListagemBase<T extends IEntidadeRepository> extends JFrame
             DefaultListModel<T> modelo = new DefaultListModel<>();
             
             for (T item : dados) {
-                if(filtro.isBlank() || item.toString().contains(filtro))
-                modelo.addElement(item);
+                if(PreFiltro(item) && (filtro.isBlank() || item.toString().contains(filtro)))
+                    modelo.addElement(item);
             }
             
             this.jItens.setModel(modelo);

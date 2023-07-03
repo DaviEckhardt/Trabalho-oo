@@ -4,8 +4,10 @@ import br.ufjf.dcc.dcc025.controller.LoginController;
 import br.ufjf.dcc.dcc025.model.IPesquisa;
 import br.ufjf.dcc.dcc025.model.ModoTela;
 import br.ufjf.dcc.dcc025.model.Robo;
+import br.ufjf.dcc.dcc025.model.Usuario;
 import br.ufjf.dcc.dcc025.repository.IRepository;
 import br.ufjf.dcc.dcc025.repository.RoboRepository;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -51,6 +53,11 @@ public class ListagemRobo extends ListagemBase<Robo> {
 
     @Override
     protected boolean Editar(Robo item) {
+        Usuario usuarioLogado = LoginController.getUsuarioLogado();
+        if(!usuarioLogado.permissaoCapitao() && !usuarioLogado.permissaoAdministrador()){
+            JOptionPane.showMessageDialog(this, "Você não tem permissão para alterar esse usuário!");
+            return false;
+        }
         try{
             RoboCadastro.Editar(this,item);
             return true;
@@ -63,5 +70,13 @@ public class ListagemRobo extends ListagemBase<Robo> {
     @Override
     protected boolean PermissaoRemover() {
         return LoginController.getUsuarioLogado().permissaoAdministrador() || LoginController.getUsuarioLogado().permissaoCapitao();
+    }
+
+    @Override
+    protected boolean PreFiltro(Robo item) {
+        if(LoginController.getUsuarioLogado().permissaoAdministrador())
+           return true;
+        
+        return LoginController.getUsuarioLogado().getEquipeId() == item.getEquipeId();
     }
 } 

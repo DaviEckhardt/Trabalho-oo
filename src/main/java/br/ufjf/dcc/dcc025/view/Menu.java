@@ -5,6 +5,7 @@
 package br.ufjf.dcc.dcc025.view;
 
 import br.ufjf.dcc.dcc025.controller.AtualizaDadosBase;
+import br.ufjf.dcc.dcc025.model.Categoria;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -23,7 +24,7 @@ public class Menu extends JFrame {
     private Image imagemDeFundo;
 
     public Menu() {
-        super("Interface Gráfica com Imagem de Fundo");
+        super("Menu");
         addWindowListener(new AtualizaDadosBase(this));
         // Carrega a imagem de fundo
         imagemDeFundo = new ImageIcon("src/Imagens/logorinoCOLLEGERe.png").getImage();
@@ -71,7 +72,9 @@ public class Menu extends JFrame {
             });
             
             chave.addActionListener( (e)-> {
-                chav chaveamento = new chav();
+                SelecionaCategoria sel = new SelecionaCategoria();
+                sel.setVisible(true);
+                chav chaveamento = new chav(categoria);
                 chaveamento.setVisible(true);
             });
                     

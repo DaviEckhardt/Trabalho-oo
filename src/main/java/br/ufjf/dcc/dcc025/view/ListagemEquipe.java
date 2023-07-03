@@ -8,11 +8,13 @@ import br.ufjf.dcc.dcc025.controller.LoginController;
 import br.ufjf.dcc.dcc025.model.Equipe;
 import br.ufjf.dcc.dcc025.model.IPesquisa;
 import br.ufjf.dcc.dcc025.model.ModoTela;
+import br.ufjf.dcc.dcc025.model.Usuario;
 import br.ufjf.dcc.dcc025.repository.EquipeRepository;
 import br.ufjf.dcc.dcc025.repository.IRepository;
 import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 /**
@@ -28,7 +30,7 @@ public class ListagemEquipe extends ListagemBase<Equipe> {
     }
     
     public ListagemEquipe(ModoTela modo, IPesquisa tela){
-        super(modo);
+        super(modo, tela);
         repository = new EquipeRepository();
     }
     
@@ -71,6 +73,14 @@ public class ListagemEquipe extends ListagemBase<Equipe> {
     @Override
     protected boolean PermissaoRemover() {
         return LoginController.getUsuarioLogado().permissaoAdministrador() || LoginController.getUsuarioLogado().permissaoCapitao();
+    }
+
+    @Override
+    protected boolean PreFiltro(Equipe item) {
+        if(LoginController.getUsuarioLogado().permissaoAdministrador())
+           return true;
+        
+        return LoginController.getUsuarioLogado().getEquipeId() == item.getId();
     }
     
 }

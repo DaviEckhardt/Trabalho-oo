@@ -15,10 +15,11 @@ import br.ufjf.dcc.dcc025.Confrontos;
  *
  * @author Davi
  */
+import br.ufjf.dcc.dcc025.model.Categoria;
 public class chav extends javax.swing.JFrame {
 
 
-    public chav() {
+    public chav(Categoria categoria) {
         initComponents();
     }
 
@@ -59,21 +60,21 @@ public class chav extends javax.swing.JFrame {
         jSeparator13 = new javax.swing.JSeparator();
         jSeparator14 = new javax.swing.JSeparator();
         
-        jTextField1.setEnabled(false);
-        jTextField2.setEnabled(false);
-        jTextField3.setEnabled(false);
-        jTextField4.setEnabled(false);
-        jTextField5.setEnabled(false);
-        jTextField6.setEnabled(false);
-        jTextField7.setEnabled(false);
-        jTextField8.setEnabled(false);
-        jTextField9.setEnabled(false);
-        jTextField10.setEnabled(false);
-        jTextField11.setEnabled(false);
-        jTextField12.setEnabled(false);
-        jTextField14.setEnabled(false);
-        jTextField18.setEnabled(false);
-        jTextField19.setEnabled(false);
+        jTextField1.setEditable(false);
+        jTextField2.setEditable(false);
+        jTextField3.setEditable(false);
+        jTextField4.setEditable(false);
+        jTextField5.setEditable(false);
+        jTextField6.setEditable(false);
+        jTextField7.setEditable(false);
+        jTextField8.setEditable(false);
+        jTextField9.setEditable(false);
+        jTextField10.setEditable(false);
+        jTextField11.setEditable(false);
+        jTextField12.setEditable(false);
+        jTextField14.setEditable(false);
+        jTextField18.setEditable(false);
+        jTextField19.setEditable(false);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -88,7 +89,7 @@ public class chav extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTextField1.setText("Equipe 1");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -379,7 +380,7 @@ public class chav extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new chav().setVisible(true);
+                new chav(categoria).setVisible(true);
             }
         });
     }
