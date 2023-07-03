@@ -1,13 +1,9 @@
 package br.ufjf.dcc.dcc025.view;
 
-import br.ufjf.dcc.dcc025.controller.AtualizaDadosCadastro;
 import br.ufjf.dcc.dcc025.model.Equipe;
 import br.ufjf.dcc.dcc025.repository.EquipeRepository;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;

@@ -5,7 +5,6 @@
 package br.ufjf.dcc.dcc025.view;
 
 import br.ufjf.dcc.dcc025.controller.AtualizaDadosCadastro;
-import br.ufjf.dcc.dcc025.repository.EquipeRepository;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;

@@ -5,7 +5,6 @@
 package br.ufjf.dcc.dcc025.view;
 
 import br.ufjf.dcc.dcc025.controller.AtualizaDadosBase;
-import br.ufjf.dcc.dcc025.model.Categoria;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;

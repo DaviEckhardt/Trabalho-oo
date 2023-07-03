@@ -6,7 +6,6 @@ package br.ufjf.dcc.dcc025.controller;
 
 import br.ufjf.dcc.dcc025.view.CadastroBase;
 import br.ufjf.dcc.dcc025.view.ListagemBase;
-import java.awt.Window;
 import java.awt.event.WindowEvent;
 
 /**

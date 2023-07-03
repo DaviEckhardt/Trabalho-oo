@@ -5,8 +5,6 @@
 package br.ufjf.dcc.dcc025.controller;
 
 import br.ufjf.dcc.dcc025.model.IPesquisa;
-import br.ufjf.dcc.dcc025.model.ModoTela;
-import br.ufjf.dcc.dcc025.utils.ScreenUtils;
 import br.ufjf.dcc.dcc025.view.ListagemBase;
 import java.awt.event.WindowEvent;
 

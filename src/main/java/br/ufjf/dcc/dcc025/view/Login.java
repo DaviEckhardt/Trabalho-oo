@@ -2,17 +2,9 @@ package br.ufjf.dcc.dcc025.view;
 import br.ufjf.dcc.dcc025.controller.AtualizaDadosBase;
 import br.ufjf.dcc.dcc025.model.Usuario;
 import br.ufjf.dcc.dcc025.repository.UsuarioRepository;
-import br.ufjf.dcc.dcc025.utils.ScreenUtils;
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-import java.util.Arrays;
-
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;

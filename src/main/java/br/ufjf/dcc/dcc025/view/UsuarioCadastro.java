@@ -4,7 +4,6 @@
  */
 package br.ufjf.dcc.dcc025.view;
 
-import br.ufjf.dcc.dcc025.controller.AtualizaDadosBase;
 import br.ufjf.dcc.dcc025.exception.EmailException;
 import br.ufjf.dcc.dcc025.model.Categoria;
 import br.ufjf.dcc.dcc025.model.Email;
@@ -15,14 +14,8 @@ import br.ufjf.dcc.dcc025.repository.UsuarioRepository;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
-import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;

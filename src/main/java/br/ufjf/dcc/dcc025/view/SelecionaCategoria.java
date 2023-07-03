@@ -4,23 +4,14 @@
  */
 package br.ufjf.dcc.dcc025.view;
 
-import br.ufjf.dcc.dcc025.controller.AtualizaDadosBase;
 import br.ufjf.dcc.dcc025.model.Categoria;
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.Toolkit;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
-import java.awt.BorderLayout;
-import java.io.File;
-import java.awt.event.ActionEvent;
 import java.awt.*;
-import java.awt.event.ActionListener;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 /**
  *
@@ -62,49 +53,49 @@ public class SelecionaCategoria extends JFrame {
         
         vsss.addActionListener((e) -> {
             Categoria categoria = Categoria.VSSS;
-            chav chaveamento = new chav(categoria);
+            Chav chaveamento = new Chav(categoria);
             chaveamento.setVisible(true);
             dispose();
         });
         
         seguidor.addActionListener((e) -> {
             Categoria categoria = Categoria.Seguidor;
-            chav chaveamento = new chav(categoria);
+            Chav chaveamento = new Chav(categoria);
             chaveamento.setVisible(true);
             dispose();
         });
         
         mini.addActionListener((e) -> {
             Categoria categoria = Categoria.MiniSumo;
-            chav chaveamento = new chav(categoria);
+            Chav chaveamento = new Chav(categoria);
             chaveamento.setVisible(true);
             dispose();
         });
         
         lego.addActionListener((e) -> {
             Categoria categoria = Categoria.SumoLego;
-            chav chaveamento = new chav(categoria);
+            Chav chaveamento = new Chav(categoria);
             chaveamento.setVisible(true);
             dispose();
         });
 
         perseguidor.addActionListener((e) -> {
             Categoria categoria = Categoria.Perseguidor;
-            chav chaveamento = new chav(categoria);
+            Chav chaveamento = new Chav(categoria);
             chaveamento.setVisible(true);
             dispose();
         });
         
         spl.addActionListener((e) -> {
             Categoria categoria = Categoria.SPL;
-            chav chaveamento = new chav(categoria);
+            Chav chaveamento = new Chav(categoria);
             chaveamento.setVisible(true);
             dispose();
         });
         
         combate.addActionListener((e) -> {
             Categoria categoria = Categoria.Combate;
-            chav chaveamento = new chav(categoria);
+            Chav chaveamento = new Chav(categoria);
             chaveamento.setVisible(true);
             dispose();
         });

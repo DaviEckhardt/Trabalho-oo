@@ -3,8 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package br.ufjf.dcc.dcc025;
-import br.ufjf.dcc.dcc025.model.Robo;
-import java.util.Scanner;
 /**
  *
  * @author User

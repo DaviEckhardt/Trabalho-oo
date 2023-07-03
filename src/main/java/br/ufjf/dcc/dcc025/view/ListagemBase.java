@@ -3,7 +3,6 @@ import br.ufjf.dcc.dcc025.controller.AtualizaDadosListagem;
 import br.ufjf.dcc.dcc025.model.IEntidadeRepository;
 import br.ufjf.dcc.dcc025.model.IPesquisa;
 import br.ufjf.dcc.dcc025.model.ModoTela;
-import br.ufjf.dcc.dcc025.model.TipoUsuario;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -22,13 +21,6 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
 import br.ufjf.dcc.dcc025.repository.IRepository;
-import br.ufjf.dcc.dcc025.utils.ImageUtils;
-import java.awt.Dialog;
-import java.awt.Toolkit;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.util.concurrent.CountDownLatch;
-import javax.swing.SwingUtilities;
 /**
  *
  * @author Gabriel
