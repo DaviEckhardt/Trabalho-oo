@@ -66,5 +66,9 @@ public class Robo implements IEntidadeRepository {
         this.categoria = categoria;
     }
 
+    @Override
+    public String toString(){
+        return String.format("%d | %s | %s | %d", id, nome, categoria.getNome(), equipeId);
+    }
     
 }

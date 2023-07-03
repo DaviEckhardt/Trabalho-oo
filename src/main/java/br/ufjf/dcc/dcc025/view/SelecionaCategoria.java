@@ -64,42 +64,49 @@ public class SelecionaCategoria extends JFrame {
             Categoria categoria = Categoria.VSSS;
             chav chaveamento = new chav(categoria);
             chaveamento.setVisible(true);
+            dispose();
         });
         
         seguidor.addActionListener((e) -> {
             Categoria categoria = Categoria.Seguidor;
             chav chaveamento = new chav(categoria);
             chaveamento.setVisible(true);
+            dispose();
         });
         
         mini.addActionListener((e) -> {
             Categoria categoria = Categoria.MiniSumo;
             chav chaveamento = new chav(categoria);
             chaveamento.setVisible(true);
+            dispose();
         });
         
         lego.addActionListener((e) -> {
             Categoria categoria = Categoria.SumoLego;
             chav chaveamento = new chav(categoria);
             chaveamento.setVisible(true);
+            dispose();
         });
 
         perseguidor.addActionListener((e) -> {
             Categoria categoria = Categoria.Perseguidor;
             chav chaveamento = new chav(categoria);
             chaveamento.setVisible(true);
+            dispose();
         });
         
         spl.addActionListener((e) -> {
             Categoria categoria = Categoria.SPL;
             chav chaveamento = new chav(categoria);
             chaveamento.setVisible(true);
+            dispose();
         });
         
         combate.addActionListener((e) -> {
             Categoria categoria = Categoria.Combate;
             chav chaveamento = new chav(categoria);
             chaveamento.setVisible(true);
+            dispose();
         });
 
         add(panel);
