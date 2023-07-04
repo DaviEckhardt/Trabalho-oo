@@ -102,7 +102,7 @@ public abstract class ListagemBase<T extends IEntidadeRepository> extends JFrame
     }
 
     private void desenhaRodape() {
-        JPanel painelBotoes = new JPanel(new GridLayout(0, 4));
+        JPanel painelBotoes = new JPanel(new GridLayout(0, Modo == ModoTela.Listagem ? 3 : 4));
 
         if(Modo == ModoTela.Pesquisa){
             System.out.println("Entrou ");
@@ -116,7 +116,8 @@ public abstract class ListagemBase<T extends IEntidadeRepository> extends JFrame
         
         JButton btnCadastrar = new JButton("Cadastrar");
         btnCadastrar.addActionListener((ActionEvent arg0) -> {
-            Cadastrar();
+            if(Cadastrar())
+                Filtrar();
         });
         painelBotoes.add(btnCadastrar, BorderLayout.EAST);
         
@@ -145,7 +146,8 @@ public abstract class ListagemBase<T extends IEntidadeRepository> extends JFrame
         int index = jItens.getSelectedIndex();
         if(index != -1){
             T item = jItens.getModel().getElementAt(index);
-            getRepository().remove(item);            
+            getRepository().remove(item); 
+            Filtrar();
             return true;
         }
         return false;
@@ -198,5 +200,7 @@ public abstract class ListagemBase<T extends IEntidadeRepository> extends JFrame
             Editar(jItens.getModel().getElementAt(index));
         else
             JOptionPane.showMessageDialog(this, "Selecione um item para editar!");
+        
+        Filtrar();
     }
 }

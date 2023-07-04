@@ -4,6 +4,8 @@
  */
 package br.ufjf.dcc.dcc025.utils;
 
+import java.awt.Component;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsEnvironment;
@@ -49,4 +51,5 @@ public class ScreenUtils {
 
         window.setLocation(x, y);
     }
+    
 }

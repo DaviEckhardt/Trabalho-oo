@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package br.ufjf.dcc.dcc025.view;
-import br.ufjf.dcc.dcc025.Confrontos;
 
 /* Alunos
     Daniel Keim Almeida - 202165021AB
@@ -15,17 +14,26 @@ import br.ufjf.dcc.dcc025.Confrontos;
  *
  * @author Davi
  */
+import br.ufjf.dcc.dcc025.controller.AtualizaDadosCampeonato;
 import br.ufjf.dcc.dcc025.model.Categoria;
-public class Chav extends javax.swing.JFrame {
+import br.ufjf.dcc.dcc025.model.Robo;
+import br.ufjf.dcc.dcc025.repository.RoboRepository;
+import br.ufjf.dcc.dcc025.utils.ScreenUtils;
+import java.awt.Component;
+import java.awt.Container;
+import java.util.List;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+public class Chaveamento extends javax.swing.JFrame {
 
     private Categoria categoria;
-    public Chav(Categoria categoria) {
+    public Chaveamento(Categoria categoria) {
+        super("Simulação de campeonato");
+        this.addWindowListener(new AtualizaDadosCampeonato(this));
         this.categoria = categoria;
         initComponents();
     }
 
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
         
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -68,7 +76,7 @@ public class Chav extends javax.swing.JFrame {
         jTextField5.setEditable(false);
         jTextField6.setEditable(false);
         jTextField7.setEditable(false);
-        jTextField8.setEditable(false);
+        jTextField8.setEditable(false);        
         jTextField9.setEditable(false);
         jTextField10.setEditable(false);
         jTextField11.setEditable(false);
@@ -77,73 +85,42 @@ public class Chav extends javax.swing.JFrame {
         jTextField18.setEditable(false);
         jTextField19.setEditable(false);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jTextField1.setText("Equipe 1");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
+        
+        jTextField1.addActionListener((java.awt.event.ActionEvent evt) -> {
+            jTextField1ActionPerformed(evt);
         });
 
-        jTextField2.setText("Equipe 2");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
+        jTextField2.addActionListener((java.awt.event.ActionEvent evt) -> {
+            jTextField2ActionPerformed(evt);
         });
 
-        jTextField3.setText("Equipe 3");
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
+        jTextField3.addActionListener((java.awt.event.ActionEvent evt) -> {
+            jTextField3ActionPerformed(evt);
         });
 
         jTextField4.setText("Vencedor conflito");
 
-        jTextField5.setText("Equipe 4");
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
-            }
+        jTextField5.addActionListener((java.awt.event.ActionEvent evt) -> {
+            jTextField5ActionPerformed(evt);
         });
 
-        jTextField6.setText("Equipe 5");
-
-        jTextField7.setText("Equipe 6");
-
+        
+        
         jTextField8.setText("Vencedor conflito");
 
         jTextField9.setText("Vencedor conflito");
 
-        jTextField10.setText("Equipe 7");
-
-        jTextField11.setText("Equipe 8");
-
+        
         jTextField12.setText("Vencedor conflito");
 
         jTextField19.setText("Vencedor conflito");
 
         jTextField14.setText("Vencedor conflito");
         
-        jTextField14.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField14ActionPerformed(evt);
-            }
+        jTextField14.addActionListener((java.awt.event.ActionEvent evt) -> {
+            jTextField14ActionPerformed(evt);
         });
 
         jTextField18.setText("Campeão");
@@ -351,40 +328,7 @@ public class Chav extends javax.swing.JFrame {
         // TODO add your handling code here:
     }                                            
 
-    /**
-     * @param args the command line arguments
-     */
-    public void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Chav.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Chav.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Chav.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Chav.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Chav(categoria).setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify                     
     private javax.swing.Box.Filler filler1;
@@ -420,4 +364,52 @@ public class Chav extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     // End of variables declaration                   
+
+    public void carregar() {
+        RoboRepository repository = new RoboRepository();
+        List<Robo> robos = repository.getByCategoria(categoria);
+
+        for (int i = 1; i <= 8; i++) {
+            JTextField textField = obterCampoOitavas(i);
+            
+            if(textField == null)
+                continue;
+            
+            if(i <= robos.size())
+                textField.setText(robos.get(i).getNome());
+            else
+                textField.setText("W.O");
+        }
+
+    }
+    
+    private JTextField obterCampoOitavas(int i){
+        switch (i) {
+            case 1 -> {
+                return jTextField1;
+            } 
+            case 2 -> {
+                return jTextField2;
+            }
+            case 3 -> {
+                return jTextField3;
+            }
+            case 4 -> { 
+                return jTextField5;
+            }
+            case 5 -> {
+                return jTextField6;
+            }
+            case 6 -> { 
+                return jTextField7;                 
+            }
+            case 7 -> { 
+                return jTextField10;
+            }
+            case 8 -> {
+                return jTextField11;                
+            }
+        }        
+        return null;
+    }
 }

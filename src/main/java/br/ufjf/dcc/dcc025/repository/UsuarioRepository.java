@@ -34,20 +34,16 @@ public class UsuarioRepository extends Repository<Usuario>  {
         return null;
     }
     @Override
-    public void remove(Usuario item) {
-        List<Usuario> list = findAll();
-
-        for (int i = 0; i < list.size(); i++) {
-            if(list.get(i).getId() == item.getId()){
-                list.remove(i);
-                break;
-            }
-        }        
-        save(list);
-    }
-
-    @Override
     protected Type getTipoLista() {
         return new TypeToken<List<Usuario>>(){}.getType();
+    }
+
+    public boolean emailExiste(String email) {
+        List<Usuario> list = findAll();
+        for(Usuario usuario: list){
+            if(usuario.getEmail().equals(email))
+                return true;
+        }
+        return false;
     }
 }

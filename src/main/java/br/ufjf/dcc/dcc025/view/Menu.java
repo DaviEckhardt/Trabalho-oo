@@ -41,14 +41,13 @@ public class Menu extends JFrame {
     // Painel personalizado com imagem de fundo
     private class PainelComImagem extends JPanel {
 
-        private JButton botaoBemVindo;
 
         public PainelComImagem() {
             setLayout(new BorderLayout()); // Define o layout do painel como BorderLayout
 
             
             //botaoBemVindo.setPreferredSize(new Dimension(50, 30));
-            botaoBemVindo = new JButton("Sair");
+            JButton botaoSair = new JButton("Sair");
             JPanel painel = new JPanel();
             painel.setLayout(new GridLayout(2,1));
             
@@ -80,11 +79,11 @@ public class Menu extends JFrame {
             painel.add(robos);
             painel.add(participantes);
             painel.add(chave);  
-            painel.add(botaoBemVindo); 
+            painel.add(botaoSair); 
             
             add(painel, BorderLayout.SOUTH);
 
-            botaoBemVindo.addActionListener((ActionEvent e) -> {
+            botaoSair.addActionListener((ActionEvent e) -> {
                 System.exit(0);
             });
         }

@@ -41,7 +41,10 @@ public class Usuario implements IEntidadeRepository {
     public String getNome() {
         return nome;
     }
-
+    
+    public Email getEmailClass() {
+        return email;
+    } 
     public String getEmail() {
         return email.getEmail();
     }    
@@ -89,10 +92,13 @@ public class Usuario implements IEntidadeRepository {
         this.senha = senha;
     }
        
-    public void getCategoria(Categoria categoria) {
+    public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
     
+    public void setTipo(TipoUsuario tipo) {
+        this.tipo = tipo;
+    }
     public void setEquipeId(int equipeId) {
         this.equipeId = equipeId;
     }

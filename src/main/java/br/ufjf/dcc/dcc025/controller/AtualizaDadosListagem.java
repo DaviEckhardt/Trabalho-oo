@@ -27,9 +27,6 @@ public class AtualizaDadosListagem extends AtualizaDadosBase {
     
     @Override
     public void windowDeactivated(WindowEvent e) {
-        System.out.println("Lugar de devolver a seleção aqui");
-        System.out.println(telaDevolucao);
-        System.out.println(listagem.itemSelecionado);
         if(telaDevolucao != null)
             telaDevolucao.ReceberPesquisa(listagem.itemSelecionado);
     }

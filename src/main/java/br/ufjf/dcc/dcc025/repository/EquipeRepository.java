@@ -18,4 +18,14 @@ public class EquipeRepository extends Repository<Equipe> {
     protected Type getTipoLista() {
         return new TypeToken<List<Equipe>>(){}.getType();
     }
+    
+    public boolean equipeExiste(String nome, String cidade){
+        List<Equipe> list = findAll();
+        for(Equipe equipe: list){
+            if(equipe.getNome().equals(nome) && equipe.getCidade().equals(cidade))
+                return true;
+        }
+        
+        return false;
+    }
 }

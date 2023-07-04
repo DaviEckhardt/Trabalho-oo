@@ -41,6 +41,9 @@ public class Login extends javax.swing.JFrame {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.repaint();
 
+        //System.out.println("Provisorio");
+        edtLogin.setText("gabriel");
+        edtSenha.setText("123");
         this.setVisible(true);
     }
 

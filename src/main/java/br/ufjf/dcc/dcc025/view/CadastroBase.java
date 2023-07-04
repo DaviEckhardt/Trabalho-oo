@@ -26,10 +26,10 @@ public abstract class CadastroBase extends JFrame{
     public CadastroBase(String title, ListagemBase telaListagem){
         super(title);      
         this.addWindowListener(new AtualizaDadosCadastro(this, telaListagem));
-        initComponents(); 
+        initComponents();
     } 
     
-    private void initComponents() {
+    private void initComponents() {        
         this.pnlPrincipal = new JPanel();
         this.pnlPrincipal.setLayout(new BorderLayout());
 
@@ -39,7 +39,6 @@ public abstract class CadastroBase extends JFrame{
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.repaint();
     }
-    
     protected abstract void desenhaTela();
 
     private void desenhaRodape() {

@@ -72,8 +72,17 @@ public abstract class Repository<T extends IEntidadeRepository> implements IRepo
     @Override
     public void save(T item) {
         List<T> list = findAll();
-        item = genId(item);        
-        list.add(item);
+        
+        if(item.getId() > 0){            
+            for(T savedItem : list){
+               if(savedItem.getId() == item.getId())
+                   list.set(list.indexOf(savedItem), item);
+            }
+        }
+        else{            
+            item = genId(item);        
+            list.add(item);
+        }        
         save(list);        
     }
     
@@ -88,6 +97,17 @@ public abstract class Repository<T extends IEntidadeRepository> implements IRepo
             }
         }        
         save(list);
+    }
+    
+    public T getById(int id){
+        List<T> list = findAll();
+        
+        for(T item: list){
+            if(item.getId() == id)
+                return item;
+        }
+        
+        return null;
     }
 
 }

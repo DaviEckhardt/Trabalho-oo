@@ -9,6 +9,7 @@ import br.ufjf.dcc.dcc025.model.Categoria;
 import br.ufjf.dcc.dcc025.model.Email;
 import br.ufjf.dcc.dcc025.model.Equipe;
 import br.ufjf.dcc.dcc025.model.IPesquisa;
+import br.ufjf.dcc.dcc025.model.TipoUsuario;
 import br.ufjf.dcc.dcc025.model.Usuario;
 import br.ufjf.dcc.dcc025.repository.UsuarioRepository;
 import java.awt.BorderLayout;
@@ -33,6 +34,7 @@ public class UsuarioCadastro extends CadastroBase implements IPesquisa<Equipe> {
     private JPasswordField edtSenha;
     private JComboBox cbbCategoria;
     private int equipeId;   
+    private TipoUsuario tipoUsuario;
     
     private final UsuarioRepository repository;
         
@@ -41,7 +43,9 @@ public class UsuarioCadastro extends CadastroBase implements IPesquisa<Equipe> {
     }        
     public UsuarioCadastro(ListagemUsuario telaListagem){
         super("Cadastro de Usuário", telaListagem);
-        repository = new UsuarioRepository();        
+        repository = new UsuarioRepository();      
+        equipeId = 0;
+        tipoUsuario = TipoUsuario.Competidor;        
     } 
     
     public static void Cadastrar(){
@@ -121,7 +125,9 @@ public class UsuarioCadastro extends CadastroBase implements IPesquisa<Equipe> {
             String senha = new String(edtSenha.getPassword());
             Categoria categoria = (Categoria) cbbCategoria.getSelectedItem();           
             
-            if(categoria == Categoria.Gerencia)
+            if(tipoUsuario == TipoUsuario.Administrador)
+                usuario = Usuario.UsuarioAdmin(id, nome, email, senha);
+            else if(categoria == Categoria.Gerencia)
                 usuario = Usuario.UsuarioCapitao(id, nome, email, senha, equipeId);
             else
                 usuario = Usuario.UsuarioCompetidor(id, nome, email, senha, equipeId, categoria);
@@ -159,8 +165,13 @@ public class UsuarioCadastro extends CadastroBase implements IPesquisa<Equipe> {
             return false;
         }
 
-        if(equipeId <= 0){
+        if(equipeId <= 0 && tipoUsuario != TipoUsuario.Administrador){
             JOptionPane.showMessageDialog(this, "Equipe inválida!");
+            return false;
+        }
+        
+        if(id == 0 && repository.emailExiste(edtEmail.getText())){
+            JOptionPane.showMessageDialog(this, "Esse email já foi utilizado!");
             return false;
         }
             
@@ -173,12 +184,11 @@ public class UsuarioCadastro extends CadastroBase implements IPesquisa<Equipe> {
         edtSenha.setText(usuario.getSenha());
         cbbCategoria.setSelectedItem(usuario.getCategoria());
         equipeId = usuario.getEquipeId();
+        tipoUsuario = usuario.getTipo();
     }
 
     @Override
     public void ReceberPesquisa(Equipe equipe) {
-        System.out.println("Ta aqui");
-        System.out.println(equipe);
         if(equipe != null)
             equipeId = equipe.getId();
         else

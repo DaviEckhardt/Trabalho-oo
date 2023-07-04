@@ -119,7 +119,13 @@ public class RoboCadastro extends CadastroBase implements IPesquisa<Equipe> {
         if(equipeId <= 0){
             JOptionPane.showMessageDialog(this, "Equipe inválida!");
             return false;
-        }            
+        }    
+        
+        if(id == 0 && repository.roboExiste(edtNome.getText(), (Categoria) cbbCategoria.getSelectedItem())){
+            JOptionPane.showMessageDialog(this, "Esse nome já foi utilizado!");
+            return false;
+        }
+        
         return true;
     }
 
