@@ -22,6 +22,7 @@ import br.ufjf.dcc.dcc025.utils.ScreenUtils;
 import java.awt.Component;
 import java.awt.Container;
 import java.util.List;
+import java.util.Random;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 public class Chaveamento extends javax.swing.JFrame {
@@ -39,21 +40,21 @@ public class Chaveamento extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 10), new java.awt.Dimension(0, 10), new java.awt.Dimension(32767, 10));
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
-        jTextField11 = new javax.swing.JTextField();
-        jTextField12 = new javax.swing.JTextField();
-        jTextField19 = new javax.swing.JTextField();
-        jTextField14 = new javax.swing.JTextField();
-        jTextField18 = new javax.swing.JTextField();
+        jTextField1 = new JRoboField();
+        jTextField2 = new JRoboField();
+        jTextField3 = new JRoboField();
+        jTextField4 = new JRoboField();
+        jTextField5 = new JRoboField();
+        jTextField6 = new JRoboField();
+        jTextField7 = new JRoboField();
+        jTextField8 = new JRoboField();
+        jTextField9 = new JRoboField();
+        jTextField10 = new JRoboField();
+        jTextField11 = new JRoboField();
+        jTextField12 = new JRoboField();
+        jTextField19 = new JRoboField();
+        jTextField14 = new JRoboField();
+        jTextField18 = new JRoboField();
         filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
@@ -348,21 +349,21 @@ public class Chaveamento extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField18;
-    private javax.swing.JTextField jTextField19;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private JRoboField jTextField1;
+    private JRoboField jTextField10;
+    private JRoboField jTextField11;
+    private JRoboField jTextField12;
+    private JRoboField jTextField14;
+    private JRoboField jTextField18;
+    private JRoboField jTextField19;
+    private JRoboField jTextField2;
+    private JRoboField jTextField3;
+    private JRoboField jTextField4;
+    private JRoboField jTextField5;
+    private JRoboField jTextField6;
+    private JRoboField jTextField7;
+    private JRoboField jTextField8;
+    private JRoboField jTextField9;
     // End of variables declaration                   
 
     public void carregar() {
@@ -370,20 +371,20 @@ public class Chaveamento extends javax.swing.JFrame {
         List<Robo> robos = repository.getByCategoria(categoria);
 
         for (int i = 1; i <= 8; i++) {
-            JTextField textField = obterCampoOitavas(i);
+            JRoboField textField = obterCampoOitavas(i);
             
             if(textField == null)
                 continue;
             
             if(i <= robos.size())
-                textField.setText(robos.get(i).getNome());
+                textField.setRobo(robos.get(i));
             else
-                textField.setText("W.O");
+                textField.setRobo(null);
         }
 
     }
     
-    private JTextField obterCampoOitavas(int i){
+    private JRoboField obterCampoOitavas(int i){
         switch (i) {
             case 1 -> {
                 return jTextField1;
@@ -411,5 +412,59 @@ public class Chaveamento extends javax.swing.JFrame {
             }
         }        
         return null;
+    }
+    
+    private JRoboField obterCampoQuartas(int i){
+        switch (i) {
+            case 1 -> {
+                return jTextField1;
+            } 
+            case 2 -> {
+                return jTextField2;
+            }
+            case 3 -> {
+                return jTextField3;
+            }
+            case 4 -> { 
+                return jTextField5;
+            }     
+        }    
+        return null;
+    }
+    private JRoboField obterCampoSemi(int i){
+        switch (i) {
+            case 1 -> {
+                return jTextField1;
+            } 
+            case 2 -> {
+                return jTextField2;
+            }
+        }        
+        return null;
+    }
+    private void decidirPartida(JRoboField jogador1, JRoboField jogador2, JRoboField campeao){
+        if(jogador1.getRobo() == null && jogador2.getRobo() == null){
+            campeao.setRobo(null);            
+            return;
+        }
+        
+        if(jogador1.getRobo() != null && jogador2.getRobo() == null){
+            // jogador 1 campeão por w.o
+            campeao.setRobo(jogador1.getRobo());
+            return;
+        }
+        else if(jogador1.getRobo() == null){
+            // jogador 2 campeão por w.o
+            campeao.setRobo(jogador2.getRobo());
+            return;
+        }
+        
+        Random random = new Random();
+        if(random.nextBoolean()){
+            campeao.setRobo(jogador1.getRobo());
+        }
+        else{
+            campeao.setRobo(jogador2.getRobo());
+        }
     }
 }
