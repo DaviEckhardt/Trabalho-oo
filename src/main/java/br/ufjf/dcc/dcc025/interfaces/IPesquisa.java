@@ -1,4 +1,4 @@
-package br.ufjf.dcc.dcc025.model;
+package br.ufjf.dcc.dcc025.interfaces;
 
 /* Alunos
     Daniel Keim Almeida - 202165021AB
@@ -6,7 +6,6 @@ package br.ufjf.dcc.dcc025.model;
     Gabriel Cordeiro Tavares - 202265163A
 */
 
-public enum ModoTela {
-    Listagem,
-    Pesquisa       
+public interface IPesquisa<T> {
+    public void receberPesquisa(T item);
 }

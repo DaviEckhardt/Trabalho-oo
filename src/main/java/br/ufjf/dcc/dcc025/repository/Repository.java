@@ -1,11 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package br.ufjf.dcc.dcc025.repository;
 
 
-import br.ufjf.dcc.dcc025.model.IEntidadeRepository;
+import br.ufjf.dcc.dcc025.interfaces.IEntidadeRepository;
 import br.ufjf.dcc.dcc025.utils.Arquivo;
 
 import java.io.File;
@@ -13,11 +9,11 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.Gson;
-/**
- *
- * @author Gabriel
- * @param <T>
- */
+/* Alunos
+    Daniel Keim Almeida - 202165021AB
+    Davi Monken Ekchardt - 202265019A
+    Gabriel Cordeiro Tavares - 202265163A
+*/
 public abstract class Repository<T extends IEntidadeRepository> implements IRepository<T> {
     private String PATH = DIRECTORY+ File.separator;
     protected abstract Type getTipoLista();

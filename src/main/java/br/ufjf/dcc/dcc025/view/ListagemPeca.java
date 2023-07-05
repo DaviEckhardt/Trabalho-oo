@@ -3,10 +3,10 @@ package br.ufjf.dcc.dcc025.view;
 import br.ufjf.dcc.dcc025.controller.LoginController;
 import br.ufjf.dcc.dcc025.interfaces.IPesquisa;
 import br.ufjf.dcc.dcc025.model.ModoTela;
-import br.ufjf.dcc.dcc025.model.Robo;
+import br.ufjf.dcc.dcc025.model.Peca;
 import br.ufjf.dcc.dcc025.model.Usuario;
 import br.ufjf.dcc.dcc025.repository.IRepository;
-import br.ufjf.dcc.dcc025.repository.RoboRepository;
+import br.ufjf.dcc.dcc025.repository.PecaRepository;
 import javax.swing.JOptionPane;
 
 /* Alunos
@@ -14,37 +14,39 @@ import javax.swing.JOptionPane;
     Davi Monken Ekchardt - 202265019A
     Gabriel Cordeiro Tavares - 202265163A
 */
-public class ListagemRobo extends ListagemBase<Robo> {
 
-    private final RoboRepository repository;
+public class ListagemPeca extends ListagemBase<Peca>  {
+
+    private final PecaRepository repository;
     
-    public ListagemRobo(ModoTela modo){
+    public ListagemPeca(ModoTela modo){
         this(modo, null);
     }
-    public ListagemRobo(ModoTela modo, IPesquisa tela){
+    
+    public ListagemPeca(ModoTela modo, IPesquisa tela){
         super(modo, tela);
-        repository = new RoboRepository();
+        repository = new PecaRepository();
     }
     
     public static void selecionar(IPesquisa tela){
-        ListagemRobo listagem = new ListagemRobo(ModoTela.Pesquisa, tela);
+        ListagemPeca listagem = new ListagemPeca(ModoTela.Pesquisa, tela);
         listagem.mostrar();
     }
     
     public static void exibir(){
-        ListagemRobo listagem = new ListagemRobo(ModoTela.Listagem);
+        ListagemPeca listagem = new ListagemPeca(ModoTela.Listagem);
         listagem.mostrar();
     }
     
     @Override
-    protected IRepository<Robo> getRepository() {
+    protected IRepository<Peca> getRepository() {
         return repository;
     }
 
     @Override
     protected boolean cadastrar() {
         try{
-            RoboCadastro.cadastrar(this);
+            PecaCadastro.cadastrar(this);
             return true;
         }
         catch(Exception e) {
@@ -53,31 +55,32 @@ public class ListagemRobo extends ListagemBase<Robo> {
     }
 
     @Override
-    protected boolean editar(Robo item) {
+    protected boolean editar(Peca item) {
         Usuario usuarioLogado = LoginController.getUsuarioLogado();
         if(!usuarioLogado.permissaoCapitao() && !usuarioLogado.permissaoAdministrador()){
             JOptionPane.showMessageDialog(this, "Você não tem permissão para alterar esse usuário!");
             return false;
         }
         try{
-            RoboCadastro.editar(this,item);
+            PecaCadastro.editar(this,item);
             return true;
         }
         catch(Exception e) {
             return false;
-        }  
+        } 
     }
-    
+
     @Override
     protected boolean permissaoRemover() {
         return LoginController.getUsuarioLogado().permissaoAdministrador() || LoginController.getUsuarioLogado().permissaoCapitao();
     }
 
     @Override
-    protected boolean preFiltro(Robo item) {
+    protected boolean preFiltro(Peca item) {
         if(LoginController.getUsuarioLogado().permissaoAdministrador())
            return true;
         
         return LoginController.getUsuarioLogado().getEquipeId() == item.getEquipeId();
     }
-} 
+    
+}

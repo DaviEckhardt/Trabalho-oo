@@ -1,17 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package br.ufjf.dcc.dcc025.controller;
 
 import br.ufjf.dcc.dcc025.view.CadastroBase;
 import br.ufjf.dcc.dcc025.view.ListagemBase;
 import java.awt.event.WindowEvent;
 
-/**
- *
- * @author Gabriel
- */
+/* Alunos
+    Daniel Keim Almeida - 202165021AB
+    Davi Monken Ekchardt - 202265019A
+    Gabriel Cordeiro Tavares - 202265163A
+*/
+
 public class AtualizaDadosCadastro extends AtualizaDadosBase {
     private ListagemBase listagem;
     
@@ -26,6 +24,6 @@ public class AtualizaDadosCadastro extends AtualizaDadosBase {
     @Override
     public void windowDeactivated(WindowEvent e) {
         if(listagem != null)
-            listagem.Filtrar();
+            listagem.filtrar();
     }
 }

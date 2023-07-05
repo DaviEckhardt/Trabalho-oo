@@ -1,5 +1,13 @@
 package br.ufjf.dcc.dcc025.model;
 
+import br.ufjf.dcc.dcc025.interfaces.IEntidadeRepository;
+
+/* Alunos
+    Daniel Keim Almeida - 202165021AB
+    Davi Monken Ekchardt - 202265019A
+    Gabriel Cordeiro Tavares - 202265163A
+*/
+
 public class Usuario implements IEntidadeRepository {
     int id;
     String nome;
@@ -23,13 +31,13 @@ public class Usuario implements IEntidadeRepository {
         this.equipeId = equipeId;
     }
     
-    public static Usuario UsuarioAdmin(int id, String nome, Email login, String senha){
+    public static Usuario usuarioAdmin(int id, String nome, Email login, String senha){
         return new Usuario(id, nome, login, senha, TipoUsuario.Administrador, Categoria.Sistema, 0);
     }
-    public static Usuario UsuarioCapitao(int id, String nome, Email login, String senha, int equipeId){
+    public static Usuario usuarioCapitao(int id, String nome, Email login, String senha, int equipeId){
         return new Usuario(id, nome, login, senha, TipoUsuario.Capitao, Categoria.Gerencia, equipeId);
     }
-    public static Usuario UsuarioCompetidor(int id, String nome, Email login, String senha, int equipeId, Categoria categoria){
+    public static Usuario usuarioCompetidor(int id, String nome, Email login, String senha, int equipeId, Categoria categoria){
         return new Usuario(id, nome, login, senha, TipoUsuario.Competidor, categoria, equipeId);
     }
 

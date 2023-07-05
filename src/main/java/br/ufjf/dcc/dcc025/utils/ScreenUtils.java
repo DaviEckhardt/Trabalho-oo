@@ -1,11 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package br.ufjf.dcc.dcc025.utils;
 
-import java.awt.Component;
-import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsEnvironment;
@@ -14,10 +8,12 @@ import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.Window;
 
-/**
- *
- * @author Gabriel
- */
+/* Alunos
+    Daniel Keim Almeida - 202165021AB
+    Davi Monken Ekchardt - 202265019A
+    Gabriel Cordeiro Tavares - 202265163A
+*/
+
 public class ScreenUtils {
     
     static public Rectangle getScreenWorkingArea(Window windowOrNull) {

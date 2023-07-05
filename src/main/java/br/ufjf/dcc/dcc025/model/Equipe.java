@@ -1,5 +1,7 @@
 package br.ufjf.dcc.dcc025.model;
 
+import br.ufjf.dcc.dcc025.interfaces.IEntidadeRepository;
+
 /* Alunos
     Daniel Keim Almeida - 202165021AB
     Davi Monken Ekchardt - 202265019A

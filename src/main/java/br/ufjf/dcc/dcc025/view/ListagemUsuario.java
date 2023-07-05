@@ -1,21 +1,18 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package br.ufjf.dcc.dcc025.view;
 
 import br.ufjf.dcc.dcc025.controller.LoginController;
-import br.ufjf.dcc.dcc025.model.IPesquisa;
+import br.ufjf.dcc.dcc025.interfaces.IPesquisa;
 import br.ufjf.dcc.dcc025.model.ModoTela;
 import br.ufjf.dcc.dcc025.model.Usuario;
 import br.ufjf.dcc.dcc025.repository.IRepository;
 import br.ufjf.dcc.dcc025.repository.UsuarioRepository;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Gabriel
- */
+/* Alunos
+    Daniel Keim Almeida - 202165021AB
+    Davi Monken Ekchardt - 202265019A
+    Gabriel Cordeiro Tavares - 202265163A
+*/
 public class ListagemUsuario extends ListagemBase<Usuario> {
 
     private final UsuarioRepository repository;
@@ -28,14 +25,14 @@ public class ListagemUsuario extends ListagemBase<Usuario> {
         repository = new UsuarioRepository();
     }
     
-    public static void Selecionar(IPesquisa tela){
+    public static void selecionar(IPesquisa tela){
         ListagemUsuario listagem = new ListagemUsuario(ModoTela.Pesquisa, tela);
-        listagem.exibir();
+        listagem.mostrar();
     }
     
-    public static void Exibir(){
+    public static void exibir(){
         ListagemUsuario listagem = new ListagemUsuario(ModoTela.Listagem);
-        listagem.exibir();
+        listagem.mostrar();
     }
     
     @Override
@@ -44,9 +41,9 @@ public class ListagemUsuario extends ListagemBase<Usuario> {
     }
 
     @Override
-    protected boolean Cadastrar() {
+    protected boolean cadastrar() {
         try{
-            UsuarioCadastro.Cadastrar(this);
+            UsuarioCadastro.cadastrar(this);
             return true;
         }
         catch(Exception e) {
@@ -55,7 +52,7 @@ public class ListagemUsuario extends ListagemBase<Usuario> {
     }
 
     @Override
-    protected boolean Editar(Usuario item) {
+    protected boolean editar(Usuario item) {
         Usuario usuarioLogado = LoginController.getUsuarioLogado();
         if(!usuarioLogado.permissaoCapitao() && !usuarioLogado.permissaoAdministrador() &&
                 LoginController.getUsuarioLogado().getId() != item.getId()){
@@ -65,7 +62,7 @@ public class ListagemUsuario extends ListagemBase<Usuario> {
             
         
         try{
-            UsuarioCadastro.Editar(this,item);
+            UsuarioCadastro.editar(this,item);
             return true;
         }
         catch(Exception e) {
@@ -74,12 +71,12 @@ public class ListagemUsuario extends ListagemBase<Usuario> {
     }
 
     @Override
-    protected boolean PermissaoRemover() {
+    protected boolean permissaoRemover() {
         return LoginController.getUsuarioLogado().permissaoAdministrador();
     }
 
     @Override
-    protected boolean PreFiltro(Usuario item) {
+    protected boolean preFiltro(Usuario item) {
         if(LoginController.getUsuarioLogado().permissaoAdministrador())
            return true;
         

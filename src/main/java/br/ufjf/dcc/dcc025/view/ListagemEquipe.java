@@ -1,20 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package br.ufjf.dcc.dcc025.view;
 
 import br.ufjf.dcc.dcc025.controller.LoginController;
 import br.ufjf.dcc.dcc025.model.Equipe;
-import br.ufjf.dcc.dcc025.model.IPesquisa;
+import br.ufjf.dcc.dcc025.interfaces.IPesquisa;
 import br.ufjf.dcc.dcc025.model.ModoTela;
 import br.ufjf.dcc.dcc025.repository.EquipeRepository;
 import br.ufjf.dcc.dcc025.repository.IRepository;
 
-/**
- *
- * @author Gabriel
- */
+/* Alunos
+    Daniel Keim Almeida - 202165021AB
+    Davi Monken Ekchardt - 202265019A
+    Gabriel Cordeiro Tavares - 202265163A
+*/
 public class ListagemEquipe extends ListagemBase<Equipe> {
 
     private final EquipeRepository repository;
@@ -28,14 +25,14 @@ public class ListagemEquipe extends ListagemBase<Equipe> {
         repository = new EquipeRepository();
     }
     
-    public static void Selecionar(IPesquisa tela){
+    public static void selecionar(IPesquisa tela){
         ListagemEquipe listagem = new ListagemEquipe(ModoTela.Pesquisa, tela);
-        listagem.exibir();          
+        listagem.mostrar();
     }
     
-    public static void Exibir(){
+    public static void exibir(){
         ListagemEquipe listagem = new ListagemEquipe(ModoTela.Listagem);
-        listagem.exibir();
+        listagem.mostrar();
     }
     @Override
     protected IRepository<Equipe> getRepository() {
@@ -43,9 +40,9 @@ public class ListagemEquipe extends ListagemBase<Equipe> {
     }
 
     @Override
-    protected boolean Cadastrar() {
+    protected boolean cadastrar() {
         try{
-            EquipeCadastro.Cadastrar(this);
+            EquipeCadastro.cadastrar(this);
             return true;
         }
         catch(Exception e) {
@@ -54,9 +51,9 @@ public class ListagemEquipe extends ListagemBase<Equipe> {
     }
 
     @Override
-    protected boolean Editar(Equipe item) {
+    protected boolean editar(Equipe item) {
         try{
-            EquipeCadastro.Editar(this, item);
+            EquipeCadastro.editar(this, item);
             return true;
         }
         catch(Exception e) {
@@ -65,12 +62,12 @@ public class ListagemEquipe extends ListagemBase<Equipe> {
     }
 
     @Override
-    protected boolean PermissaoRemover() {
+    protected boolean permissaoRemover() {
         return LoginController.getUsuarioLogado().permissaoAdministrador() || LoginController.getUsuarioLogado().permissaoCapitao();
     }
 
     @Override
-    protected boolean PreFiltro(Equipe item) {
+    protected boolean preFiltro(Equipe item) {
         if(LoginController.getUsuarioLogado().permissaoAdministrador())
            return true;
         

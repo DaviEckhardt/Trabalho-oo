@@ -1,19 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package br.ufjf.dcc.dcc025.model;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /* Alunos
     Daniel Keim Almeida - 202165021AB
     Davi Monken Ekchardt - 202265019A
     Gabriel Cordeiro Tavares - 202265163A
 */
-
-/**
- *
- * @author daniel
- */
 
 public enum Categoria {
     Sistema("Sistema", false),
@@ -43,4 +37,14 @@ public enum Categoria {
     public String toString(){
         return nome;
     }    
+    
+    public static Categoria[] getCategoriasDisputa(){
+        List<Categoria> categorias = new ArrayList<>();
+        for(Categoria categoria: values()){
+            if(categoria.temDisputa){
+                categorias.add(categoria);
+            }
+        }          
+        return categorias.toArray(Categoria[]::new);
+    }
 }

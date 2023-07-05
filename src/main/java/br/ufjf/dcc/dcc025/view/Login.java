@@ -1,4 +1,5 @@
 package br.ufjf.dcc.dcc025.view;
+
 import br.ufjf.dcc.dcc025.controller.AtualizaDadosBase;
 import br.ufjf.dcc.dcc025.model.Usuario;
 import br.ufjf.dcc.dcc025.repository.UsuarioRepository;
@@ -13,11 +14,12 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+/* Alunos
+    Daniel Keim Almeida - 202165021AB
+    Davi Monken Ekchardt - 202265019A
+    Gabriel Cordeiro Tavares - 202265163A
+*/
 
-/**
- *
- * @author Gabriel
- */
 public class Login extends javax.swing.JFrame {
 
     private JPanel pnlPrincipal;
@@ -41,9 +43,6 @@ public class Login extends javax.swing.JFrame {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.repaint();
 
-        //System.out.println("Provisorio");
-        edtLogin.setText("gabriel");
-        edtSenha.setText("123");
         this.setVisible(true);
     }
 
@@ -58,13 +57,13 @@ public class Login extends javax.swing.JFrame {
         
         JButton btnLogin = new JButton("Entrar");     
         btnLogin.addActionListener((ActionEvent arg) -> {
-            Entrar();
+            entrar();
         });        
         painelButton.add(btnLogin, BorderLayout.CENTER);  
         
         JButton btnCancelar = new JButton("Cancelar");    
         btnCancelar.addActionListener((ActionEvent arg) -> {
-            Cancelar();
+            cancelar();
         });             
         painelButton.add(btnCancelar, BorderLayout.CENTER); 
                 
@@ -87,7 +86,7 @@ public class Login extends javax.swing.JFrame {
         this.pnlPrincipal.add(painelLogin, BorderLayout.NORTH);
     }
     
-    public void Entrar(){
+    public void entrar(){
         String login = edtLogin.getText().trim();
         String senha = new String(edtSenha.getPassword());
         if(login.equals("") || senha.equals("")){
@@ -104,19 +103,18 @@ public class Login extends javax.swing.JFrame {
         }            
         dispose();        
     }
-    public void Cancelar(){
+    public void cancelar(){
         usuario = null;
         dispose();
     }
     
-    public Usuario Logar(){
+    public Usuario logar(){
         this.pack();
         this.setVisible(true);
         
         while(this.isShowing()){
             this.repaint();
         }
-        System.out.println(usuario);
         return usuario;            
     }
 

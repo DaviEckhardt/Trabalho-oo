@@ -20,8 +20,8 @@ public class RinoCup {
 
   
     public static void main(String[] args) {
-        LoginController.Init();
-        LoginController.Logar();
+        LoginController.init();
+        LoginController.logar();
         Menu janela = new Menu();
         janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         janela.setVisible(true);

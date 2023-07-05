@@ -1,13 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package br.ufjf.dcc.dcc025.view;
 
 import br.ufjf.dcc.dcc025.model.Categoria;
 import br.ufjf.dcc.dcc025.model.Equipe;
-import br.ufjf.dcc.dcc025.model.IPesquisa;
+import br.ufjf.dcc.dcc025.interfaces.IPesquisa;
 import br.ufjf.dcc.dcc025.model.Robo;
+import br.ufjf.dcc.dcc025.repository.EquipeRepository;
 import br.ufjf.dcc.dcc025.repository.RoboRepository;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -19,15 +16,18 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-/**
- *
- * @author Gabriel
- */
+/* Alunos
+    Daniel Keim Almeida - 202165021AB
+    Davi Monken Ekchardt - 202265019A
+    Gabriel Cordeiro Tavares - 202265163A
+*/
+
 public class RoboCadastro extends CadastroBase implements IPesquisa<Equipe> { 
     private int id = 0;
     private JTextField edtNome;
     private JComboBox cbbCategoria;
-    private int equipeId;   
+    private JLabel lblEquipe;
+    private Equipe equipe;   
     
     private final RoboRepository repository;
     
@@ -39,18 +39,18 @@ public class RoboCadastro extends CadastroBase implements IPesquisa<Equipe> {
         repository = new RoboRepository();        
     }     
         
-    public static void Cadastrar(){
-        Cadastrar(null);
+    public static void cadastrar(){
+        cadastrar(null);
     }
-    public static void Cadastrar(ListagemRobo listagem){
+    public static void cadastrar(ListagemRobo listagem){
         RoboCadastro cadastro = new RoboCadastro(listagem);        
         cadastro.pack();
         cadastro.setVisible(true);
     }
-    public static boolean Editar(Robo robo){
-        return Editar(null, robo);
+    public static boolean editar(Robo robo){
+        return editar(null, robo);
     }
-    public static boolean Editar(ListagemRobo listagem, Robo robo){
+    public static boolean editar(ListagemRobo listagem, Robo robo){
         RoboCadastro cadastro = new RoboCadastro(listagem);        
         cadastro.pack();
         cadastro.setVisible(true);
@@ -61,11 +61,11 @@ public class RoboCadastro extends CadastroBase implements IPesquisa<Equipe> {
     @Override
     protected void desenhaTela() {
         JPanel painelTela;
-        painelTela = new JPanel(new GridLayout(0, 2));
+        painelTela = new JPanel(new GridLayout(3, 2));
         
-        JPanel painelNomeField = new JPanel(new GridLayout(0, 2));
-        JPanel painelCategoriaField = new JPanel(new GridLayout(1, 1));
-        JPanel painelEquipeButton = new JPanel(new GridLayout(0, 1));
+        JPanel painelNomeField = new JPanel(new GridLayout(2, 1));
+        JPanel painelCategoriaField = new JPanel(new GridLayout(2, 1));
+        JPanel painelEquipeButton = new JPanel(new GridLayout(2, 0));
                 
         JLabel lblNome = new JLabel("Nome:");
         edtNome = new JTextField(20);
@@ -73,15 +73,18 @@ public class RoboCadastro extends CadastroBase implements IPesquisa<Equipe> {
         painelNomeField.add(edtNome, BorderLayout.EAST);
                 
         JLabel lblCategoria = new JLabel("Categoria:");
-        cbbCategoria = new JComboBox(Categoria.values());
+        cbbCategoria = new JComboBox(Categoria.getCategoriasDisputa());
         painelCategoriaField.add(lblCategoria, BorderLayout.WEST);
         painelCategoriaField.add(cbbCategoria, BorderLayout.EAST);
         
+        lblEquipe = new JLabel();        
+        lblEquipe.setVisible(false);
         JButton btnEscolherEquipe = new JButton("Escolher Equipe");
         btnEscolherEquipe.addActionListener((ActionEvent arg0) -> {
-            ListagemEquipe.Selecionar(this);
+            ListagemEquipe.selecionar(this);
         });
-        painelEquipeButton.add(btnEscolherEquipe, BorderLayout.EAST);
+        painelEquipeButton.add(lblEquipe, BorderLayout.NORTH);
+        painelEquipeButton.add(btnEscolherEquipe, BorderLayout.SOUTH);
       
         painelTela.add(painelNomeField);
         painelTela.add(painelCategoriaField);
@@ -91,13 +94,10 @@ public class RoboCadastro extends CadastroBase implements IPesquisa<Equipe> {
 
 
     @Override
-    protected void Salvar() {
-        if(!Validar())
-            return;
-        
+    protected void salvar() {        
         String nome = edtNome.getText();
         Categoria categoria = (Categoria) cbbCategoria.getSelectedItem();           
-        Robo robo = new Robo(id, nome, equipeId, categoria);            
+        Robo robo = new Robo(id, nome, equipe.getId(), categoria);            
         repository.save(robo);    
 
         this.setVisible(false);
@@ -105,7 +105,7 @@ public class RoboCadastro extends CadastroBase implements IPesquisa<Equipe> {
     }
 
     @Override
-    protected boolean Validar() {
+    protected boolean validar() {
         if(edtNome.getText().isBlank()){
             JOptionPane.showMessageDialog(this, "Nome inválido!");
             return false;
@@ -116,7 +116,7 @@ public class RoboCadastro extends CadastroBase implements IPesquisa<Equipe> {
             return false;
         }
 
-        if(equipeId <= 0){
+        if(equipe == null || equipe.getId() <= 0){
             JOptionPane.showMessageDialog(this, "Equipe inválida!");
             return false;
         }    
@@ -133,14 +133,21 @@ public class RoboCadastro extends CadastroBase implements IPesquisa<Equipe> {
         id = robo.getId();
         edtNome.setText(robo.getNome());
         cbbCategoria.setSelectedItem(robo.getCategoria());
-        equipeId = robo.getEquipeId();
+        if(robo.getEquipeId() > 0){
+            EquipeRepository equipeRepo = new EquipeRepository();
+            equipe = equipeRepo.getById(robo.getEquipeId());
+            
+            lblEquipe.setText("Equipe: " + equipe != null ? equipe.getNome() : ""); 
+            lblEquipe.setVisible(equipe != null);
+            this.repaint();
+        }       
     }     
 
     @Override
-    public void ReceberPesquisa(Equipe equipe) {
-        if(equipe != null)
-            equipeId = equipe.getId();
-        else
-            equipeId = 0;
+    public void receberPesquisa(Equipe equipe) {
+        this.equipe = equipe;        
+        lblEquipe.setText("Equipe: " + equipe != null ? equipe.getNome() : ""); 
+        lblEquipe.setVisible(equipe != null);
+        this.repaint();
     }
 }

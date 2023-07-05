@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package br.ufjf.dcc.dcc025.utils;
 
 import java.awt.Graphics2D;
@@ -10,12 +6,14 @@ import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
 
-/**
- *
- * @author Gabriel
- */
+/* Alunos
+    Daniel Keim Almeida - 202165021AB
+    Davi Monken Ekchardt - 202265019A
+    Gabriel Cordeiro Tavares - 202265163A
+*/
+
 public class ImageUtils {
-    public static ImageIcon CarregarImagem(String caminho, int widthMax, int heightMax){
+    public static ImageIcon carregarImagem(String caminho, int widthMax, int heightMax){
         ImageIcon img = new ImageIcon(caminho);
         Image resizedImage = getScaledImage(img.getImage(), widthMax, heightMax);
         img.setImage(resizedImage);

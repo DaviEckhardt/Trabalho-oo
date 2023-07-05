@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package br.ufjf.dcc.dcc025.view;
 
 import br.ufjf.dcc.dcc025.controller.AtualizaDadosCadastro;
@@ -11,10 +7,11 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-/**
- *
- * @author Gabriel
- */
+/* Alunos
+    Daniel Keim Almeida - 202165021AB
+    Davi Monken Ekchardt - 202265019A
+    Gabriel Cordeiro Tavares - 202265163A
+*/
 public abstract class CadastroBase extends JFrame{
     
     protected JPanel pnlPrincipal;
@@ -46,22 +43,22 @@ public abstract class CadastroBase extends JFrame{
         
         JButton btnSalvar = new JButton("Salvar");
         btnSalvar.addActionListener((ActionEvent arg0) -> {
-            SalvarBase();
+            salvarBase();
         });
         painelBotoes.add(btnSalvar, BorderLayout.EAST);       
              
         pnlPrincipal.add(painelBotoes, BorderLayout.SOUTH);    
     }
 
-    private void SalvarBase() {
-        if(!Validar())
+    private void salvarBase() {
+        if(!validar())
             return;
         
-        Salvar();        
+        salvar();        
         this.setVisible(false);
         this.dispose();        
     }
 
-    protected abstract boolean Validar();
-    protected abstract void Salvar();
+    protected abstract boolean validar();
+    protected abstract void salvar();
 }

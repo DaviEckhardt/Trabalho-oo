@@ -1,14 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package br.ufjf.dcc.dcc025.view;
 
 import br.ufjf.dcc.dcc025.exception.EmailException;
 import br.ufjf.dcc.dcc025.model.Categoria;
 import br.ufjf.dcc.dcc025.model.Email;
 import br.ufjf.dcc.dcc025.model.Equipe;
-import br.ufjf.dcc.dcc025.model.IPesquisa;
+import br.ufjf.dcc.dcc025.interfaces.IPesquisa;
 import br.ufjf.dcc.dcc025.model.TipoUsuario;
 import br.ufjf.dcc.dcc025.model.Usuario;
 import br.ufjf.dcc.dcc025.repository.UsuarioRepository;
@@ -23,10 +19,12 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-/**
- *
- * @author Gabriel
- */
+/* Alunos
+    Daniel Keim Almeida - 202165021AB
+    Davi Monken Ekchardt - 202265019A
+    Gabriel Cordeiro Tavares - 202265163A
+*/
+
 public class UsuarioCadastro extends CadastroBase implements IPesquisa<Equipe> { 
     private int id = 0;
     private JTextField edtNome;
@@ -35,6 +33,7 @@ public class UsuarioCadastro extends CadastroBase implements IPesquisa<Equipe> {
     private JComboBox cbbCategoria;
     private int equipeId;   
     private TipoUsuario tipoUsuario;
+    private JLabel lblEquipe;
     
     private final UsuarioRepository repository;
         
@@ -48,18 +47,18 @@ public class UsuarioCadastro extends CadastroBase implements IPesquisa<Equipe> {
         tipoUsuario = TipoUsuario.Competidor;        
     } 
     
-    public static void Cadastrar(){
-        Cadastrar(null);
+    public static void cadastrar(){
+        cadastrar(null);
     }
-    public static void Cadastrar(ListagemUsuario listagem){
+    public static void cadastrar(ListagemUsuario listagem){
         UsuarioCadastro cadastro = new UsuarioCadastro(listagem);        
         cadastro.pack();
         cadastro.setVisible(true);
     }
-    public static boolean Editar(Usuario usuario){
-        return Editar(null, usuario);
+    public static boolean editar(Usuario usuario){
+        return editar(null, usuario);
     }
-    public static boolean Editar(ListagemUsuario listagem, Usuario usuario){
+    public static boolean editar(ListagemUsuario listagem, Usuario usuario){
         UsuarioCadastro cadastro = new UsuarioCadastro(listagem);        
         cadastro.pack();
         cadastro.setVisible(true);
@@ -70,13 +69,13 @@ public class UsuarioCadastro extends CadastroBase implements IPesquisa<Equipe> {
     @Override
     protected void desenhaTela() {
         JPanel painelTela;
-        painelTela = new JPanel(new GridLayout(0, 2));
+        painelTela = new JPanel(new GridLayout(5, 2));
         
-        JPanel painelNomeField = new JPanel(new GridLayout(0, 2));
-        JPanel painelEmailField = new JPanel(new GridLayout(0, 2));
-        JPanel painelSenhaField = new JPanel(new GridLayout(0, 2));
-        JPanel painelCategoriaField = new JPanel(new GridLayout(1, 1));
-        JPanel painelEquipeButton = new JPanel(new GridLayout(0, 1));
+        JPanel painelNomeField = new JPanel(new GridLayout(2, 0));
+        JPanel painelEmailField = new JPanel(new GridLayout(2, 0));
+        JPanel painelSenhaField = new JPanel(new GridLayout(2, 0));
+        JPanel painelCategoriaField = new JPanel(new GridLayout(2, 0));
+        JPanel painelEquipeButton = new JPanel(new GridLayout(2, 1));
                 
         JLabel lblNome = new JLabel("Nome:");
         edtNome = new JTextField(20);
@@ -98,11 +97,14 @@ public class UsuarioCadastro extends CadastroBase implements IPesquisa<Equipe> {
         painelCategoriaField.add(lblCategoria, BorderLayout.WEST);
         painelCategoriaField.add(cbbCategoria, BorderLayout.EAST);
         
+        lblEquipe = new JLabel();        
+        lblEquipe.setVisible(false);
         JButton btnEscolherEquipe = new JButton("Escolher Equipe");
         btnEscolherEquipe.addActionListener((ActionEvent arg0) -> {
-            ListagemEquipe.Selecionar(this);
+            ListagemEquipe.selecionar(this);
         });
-        painelEquipeButton.add(btnEscolherEquipe, BorderLayout.EAST);
+        painelEquipeButton.add(lblEquipe, BorderLayout.NORTH);
+        painelEquipeButton.add(btnEscolherEquipe, BorderLayout.SOUTH);
       
         painelTela.add(painelNomeField, BorderLayout.CENTER);
         painelTela.add(painelEmailField, BorderLayout.CENTER);        
@@ -114,11 +116,8 @@ public class UsuarioCadastro extends CadastroBase implements IPesquisa<Equipe> {
 
 
     @Override
-    protected void Salvar() {
-        try {
-            if(!Validar())
-                return;
-            
+    protected void salvar() {
+        try {            
             Usuario usuario;            
             String nome = edtNome.getText();
             Email email = new Email(edtEmail.getText());
@@ -126,11 +125,11 @@ public class UsuarioCadastro extends CadastroBase implements IPesquisa<Equipe> {
             Categoria categoria = (Categoria) cbbCategoria.getSelectedItem();           
             
             if(tipoUsuario == TipoUsuario.Administrador)
-                usuario = Usuario.UsuarioAdmin(id, nome, email, senha);
+                usuario = Usuario.usuarioAdmin(id, nome, email, senha);
             else if(categoria == Categoria.Gerencia)
-                usuario = Usuario.UsuarioCapitao(id, nome, email, senha, equipeId);
+                usuario = Usuario.usuarioCapitao(id, nome, email, senha, equipeId);
             else
-                usuario = Usuario.UsuarioCompetidor(id, nome, email, senha, equipeId, categoria);
+                usuario = Usuario.usuarioCompetidor(id, nome, email, senha, equipeId, categoria);
             
             repository.save(usuario);            
         } catch (EmailException ex) {
@@ -142,7 +141,7 @@ public class UsuarioCadastro extends CadastroBase implements IPesquisa<Equipe> {
     }
 
     @Override
-    protected boolean Validar() {
+    protected boolean validar() {
         if(edtNome.getText().isBlank()){
             JOptionPane.showMessageDialog(this, "Nome inválido!");
             return false;
@@ -182,16 +181,25 @@ public class UsuarioCadastro extends CadastroBase implements IPesquisa<Equipe> {
         edtNome.setText(usuario.getNome());
         edtEmail.setText(usuario.getEmail());
         edtSenha.setText(usuario.getSenha());
-        cbbCategoria.setSelectedItem(usuario.getCategoria());
-        equipeId = usuario.getEquipeId();
+        cbbCategoria.setSelectedItem(usuario.getCategoria());        
         tipoUsuario = usuario.getTipo();
+        equipeId = usuario.getEquipeId();
+        lblEquipe.setText("Equipe: " + equipeId); 
+        lblEquipe.setVisible(equipeId > 0);
+        this.repaint();
     }
 
     @Override
-    public void ReceberPesquisa(Equipe equipe) {
-        if(equipe != null)
-            equipeId = equipe.getId();
-        else
+    public void receberPesquisa(Equipe equipe) {
+        if(equipe != null){
+            equipeId = equipe.getId();            
+            lblEquipe.setText("Equipe: "  + equipe.getId()); 
+            lblEquipe.setVisible(true);
+        }            
+        else{
             equipeId = 0;
+            lblEquipe.setVisible(false);
+        }            
+        this.repaint();
     }
 }

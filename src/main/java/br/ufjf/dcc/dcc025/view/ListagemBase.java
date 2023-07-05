@@ -1,14 +1,14 @@
 package br.ufjf.dcc.dcc025.view;
+
 import br.ufjf.dcc.dcc025.controller.AtualizaDadosListagem;
-import br.ufjf.dcc.dcc025.model.IEntidadeRepository;
-import br.ufjf.dcc.dcc025.model.IPesquisa;
+import br.ufjf.dcc.dcc025.interfaces.IEntidadeRepository;
+import br.ufjf.dcc.dcc025.interfaces.IPesquisa;
 import br.ufjf.dcc.dcc025.model.ModoTela;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.util.List;
-
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -21,20 +21,21 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
 import br.ufjf.dcc.dcc025.repository.IRepository;
-/**
- *
- * @author Gabriel
- * @param <T>
- */
+
+/* Alunos
+    Daniel Keim Almeida - 202165021AB
+    Davi Monken Ekchardt - 202265019A
+    Gabriel Cordeiro Tavares - 202265163A
+*/
 public abstract class ListagemBase<T extends IEntidadeRepository> extends JFrame {
     private final int VWIDTH = 800;
     private final int VHEIGHT = 600;
    
     protected abstract IRepository<T> getRepository();
-    protected abstract boolean Cadastrar();
-    protected abstract boolean Editar(T item);
-    protected abstract boolean PermissaoRemover();
-    protected abstract boolean PreFiltro(T item);
+    protected abstract boolean cadastrar();
+    protected abstract boolean editar(T item);
+    protected abstract boolean permissaoRemover();
+    protected abstract boolean preFiltro(T item);
     public ModoTela Modo;
     
     public T itemSelecionado;
@@ -72,7 +73,7 @@ public abstract class ListagemBase<T extends IEntidadeRepository> extends JFrame
         
         JButton btnPesquisa = new JButton("Pesquisar");      
         btnPesquisa.addActionListener((ActionEvent arg0) -> {
-            Filtrar();
+            filtrar();
         });
         edtPesquisa = new JTextField(40);
         painelTextField.add(edtPesquisa, BorderLayout.CENTER);
@@ -90,7 +91,6 @@ public abstract class ListagemBase<T extends IEntidadeRepository> extends JFrame
         
         jItens = new JList<>(model);
         jItens.setVisible(true);
-        //jItens.setPreferredSize(new Dimension(VWIDTH-200, VHEIGHT-200));
         jItens.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         
         JScrollPane scroll = new JScrollPane(jItens);
@@ -108,7 +108,7 @@ public abstract class ListagemBase<T extends IEntidadeRepository> extends JFrame
             System.out.println("Entrou ");
             JButton btnSelecionar = new JButton("Selecionar");
             btnSelecionar.addActionListener((ActionEvent arg0) -> {
-                Escolher();
+                escolher();
             });
             painelBotoes.add(btnSelecionar, BorderLayout.EAST);
             this.repaint();
@@ -116,20 +116,20 @@ public abstract class ListagemBase<T extends IEntidadeRepository> extends JFrame
         
         JButton btnCadastrar = new JButton("Cadastrar");
         btnCadastrar.addActionListener((ActionEvent arg0) -> {
-            if(Cadastrar())
-                Filtrar();
+            if(cadastrar())
+                filtrar();
         });
         painelBotoes.add(btnCadastrar, BorderLayout.EAST);
         
         JButton btnEditar = new JButton("Editar");
         btnEditar.addActionListener((ActionEvent arg0) -> {
-            Editar();
+            editar();
         });
         painelBotoes.add(btnEditar, BorderLayout.EAST);
         
         JButton btnRemover = new JButton("Remover");
         btnRemover.addActionListener((ActionEvent arg0) -> {
-            Remover();
+            remover();
         });
         painelBotoes.add(btnRemover, BorderLayout.EAST);
                 
@@ -137,8 +137,8 @@ public abstract class ListagemBase<T extends IEntidadeRepository> extends JFrame
     }
     
 
-    protected boolean Remover(){
-        if(!PermissaoRemover()){
+    protected boolean remover(){
+        if(!permissaoRemover()){
             JOptionPane.showMessageDialog(this, "Você não possui permissão para remover!");
             return false;
         }
@@ -147,13 +147,13 @@ public abstract class ListagemBase<T extends IEntidadeRepository> extends JFrame
         if(index != -1){
             T item = jItens.getModel().getElementAt(index);
             getRepository().remove(item); 
-            Filtrar();
+            filtrar();
             return true;
         }
         return false;
     };
     
-    protected void Escolher(){
+    protected void escolher(){
         int index = jItens.getSelectedIndex();
         if(index != -1){
             itemSelecionado = jItens.getModel().getElementAt(index);
@@ -163,13 +163,13 @@ public abstract class ListagemBase<T extends IEntidadeRepository> extends JFrame
             JOptionPane.showMessageDialog(this, "Selecione um item!");
     };
 
-    public void Carregar(String filtro){         
+    public void carregar(String filtro){         
         try {
             List<T> dados = getRepository().findAll();
             DefaultListModel<T> modelo = new DefaultListModel<>();
             
             for (T item : dados) {
-                if(PreFiltro(item) && (filtro.isBlank() || item.toString().contains(filtro)))
+                if(preFiltro(item) && (filtro.isBlank() || item.toString().contains(filtro)))
                     modelo.addElement(item);
             }
             
@@ -181,7 +181,7 @@ public abstract class ListagemBase<T extends IEntidadeRepository> extends JFrame
         }
     };
     
-    protected void exibir(){
+    protected void mostrar(){
         this.pack();
         this.setVisible(true);
     }
@@ -190,17 +190,17 @@ public abstract class ListagemBase<T extends IEntidadeRepository> extends JFrame
     private JList<T> jItens;
     private JPanel pnlPrincipal;
 
-    public void Filtrar() {
-        Carregar(edtPesquisa.getText());
+    public void filtrar() {
+        carregar(edtPesquisa.getText());
     }
 
-    private void Editar() {
+    private void editar() {
         int index = jItens.getSelectedIndex();
         if(index != -1)
-            Editar(jItens.getModel().getElementAt(index));
+            editar(jItens.getModel().getElementAt(index));
         else
             JOptionPane.showMessageDialog(this, "Selecione um item para editar!");
         
-        Filtrar();
+        filtrar();
     }
 }

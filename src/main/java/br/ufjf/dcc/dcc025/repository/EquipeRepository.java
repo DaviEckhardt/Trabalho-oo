@@ -5,10 +5,11 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.List;
 
-/**
- *
- * @author ice
- */
+/* Alunos
+    Daniel Keim Almeida - 202165021AB
+    Davi Monken Ekchardt - 202265019A
+    Gabriel Cordeiro Tavares - 202265163A
+*/
 public class EquipeRepository extends Repository<Equipe> {
     public EquipeRepository(){
         super("equipe");             

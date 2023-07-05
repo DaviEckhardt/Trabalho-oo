@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package br.ufjf.dcc.dcc025.repository;
 
 import br.ufjf.dcc.dcc025.model.Usuario;
@@ -9,10 +5,12 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.List;
 
-/**
- *
- * @author Gabriel
- */
+/* Alunos
+    Daniel Keim Almeida - 202165021AB
+    Davi Monken Ekchardt - 202265019A
+    Gabriel Cordeiro Tavares - 202265163A
+*/
+
 public class UsuarioRepository extends Repository<Usuario>  {
 
     public UsuarioRepository() {
@@ -45,5 +43,14 @@ public class UsuarioRepository extends Repository<Usuario>  {
                 return true;
         }
         return false;
+    }
+
+    public Usuario getCapitao(int equipeId) {
+        List<Usuario> list = findAll();
+        for(Usuario usuario: list){
+            if(usuario.permissaoCapitao() && usuario.getEquipeId() == equipeId)
+                return usuario;
+        }
+        return null;
     }
 }

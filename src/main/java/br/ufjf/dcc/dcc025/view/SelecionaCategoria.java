@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package br.ufjf.dcc.dcc025.view;
 
 import br.ufjf.dcc.dcc025.controller.AtualizaDadosBase;
@@ -13,11 +9,12 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import java.awt.*;
 import javax.swing.JLabel;
-/**
- *
- * @author ice
- */
 
+/* Alunos
+    Daniel Keim Almeida - 202165021AB
+    Davi Monken Ekchardt - 202265019A
+    Gabriel Cordeiro Tavares - 202265163A
+*/
 
 public class SelecionaCategoria extends JFrame {
     public SelecionaCategoria() {
