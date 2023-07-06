@@ -20,7 +20,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
-import br.ufjf.dcc.dcc025.repository.IRepository;
+import br.ufjf.dcc.dcc025.interfaces.IRepository;
 
 /* Alunos
     Daniel Keim Almeida - 202165021AB

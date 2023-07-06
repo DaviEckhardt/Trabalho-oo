@@ -5,7 +5,7 @@ import br.ufjf.dcc.dcc025.model.Equipe;
 import br.ufjf.dcc.dcc025.interfaces.IPesquisa;
 import br.ufjf.dcc.dcc025.model.ModoTela;
 import br.ufjf.dcc.dcc025.repository.EquipeRepository;
-import br.ufjf.dcc.dcc025.repository.IRepository;
+import br.ufjf.dcc.dcc025.interfaces.IRepository;
 
 /* Alunos
     Daniel Keim Almeida - 202165021AB

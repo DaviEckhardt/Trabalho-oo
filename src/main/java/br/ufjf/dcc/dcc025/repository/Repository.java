@@ -1,6 +1,7 @@
 package br.ufjf.dcc.dcc025.repository;
 
 
+import br.ufjf.dcc.dcc025.interfaces.IRepository;
 import br.ufjf.dcc.dcc025.interfaces.IEntidadeRepository;
 import br.ufjf.dcc.dcc025.utils.Arquivo;
 

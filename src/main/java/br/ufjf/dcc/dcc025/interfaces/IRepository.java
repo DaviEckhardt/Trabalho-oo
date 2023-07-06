@@ -1,4 +1,4 @@
-package br.ufjf.dcc.dcc025.repository;
+package br.ufjf.dcc.dcc025.interfaces;
 import java.util.List;
 import br.ufjf.dcc.dcc025.interfaces.IEntidadeRepository;
 /**

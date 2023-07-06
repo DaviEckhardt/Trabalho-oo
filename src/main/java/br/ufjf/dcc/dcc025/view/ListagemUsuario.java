@@ -4,7 +4,7 @@ import br.ufjf.dcc.dcc025.controller.LoginController;
 import br.ufjf.dcc.dcc025.interfaces.IPesquisa;
 import br.ufjf.dcc.dcc025.model.ModoTela;
 import br.ufjf.dcc.dcc025.model.Usuario;
-import br.ufjf.dcc.dcc025.repository.IRepository;
+import br.ufjf.dcc.dcc025.interfaces.IRepository;
 import br.ufjf.dcc.dcc025.repository.UsuarioRepository;
 import javax.swing.JOptionPane;
 
