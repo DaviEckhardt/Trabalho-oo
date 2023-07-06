@@ -105,7 +105,6 @@ public abstract class ListagemBase<T extends IEntidadeRepository> extends JFrame
         JPanel painelBotoes = new JPanel(new GridLayout(0, Modo == ModoTela.Listagem ? 3 : 4));
 
         if(Modo == ModoTela.Pesquisa){
-            System.out.println("Entrou ");
             JButton btnSelecionar = new JButton("Selecionar");
             btnSelecionar.addActionListener((ActionEvent arg0) -> {
                 escolher();

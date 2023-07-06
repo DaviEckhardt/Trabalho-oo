@@ -69,11 +69,16 @@ public abstract class Repository<T extends IEntidadeRepository> implements IRepo
     public void save(T item) {
         List<T> list = findAll();
         
-        if(item.getId() > 0){            
+        if(item.getId() > 0){       
+            boolean achou = false;
             for(T savedItem : list){
-               if(savedItem.getId() == item.getId())
+               if(savedItem.getId() == item.getId()){
                    list.set(list.indexOf(savedItem), item);
+                   achou = true;
+               }                   
             }
+            if (!achou)
+                list.add(item);
         }
         else{            
             item = genId(item);        

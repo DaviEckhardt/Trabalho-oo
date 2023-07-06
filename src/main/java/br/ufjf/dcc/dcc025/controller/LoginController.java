@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 
 public class LoginController {
     private static Usuario usuarioLogado;
-    public static void init(){
+    public static void iniciar(){
         UsuarioRepository repository = new UsuarioRepository();
         if(!repository.findAll().isEmpty())
             return;
@@ -23,7 +23,7 @@ public class LoginController {
         try{
             repository.save(Usuario.usuarioAdmin(1, "Gabriel", new Email("gabriel@gmail.com"), "Senha123"));
             repository.save(Usuario.usuarioAdmin(2, "Davi", new Email("davi@gmail.com"), "Senha123"));
-            repository.save(Usuario.usuarioAdmin(3, "Daniel", new Email("daniel@gmail.com"), "Senha123"));
+            repository.save(Usuario.usuarioAdmin(3,"Daniel", new Email("daniel@gmail.com"), "Senha123"));
             repository.save(Usuario.usuarioAdmin(4, "Gleiph", new Email("gleiph@gmail.com"), "Senha123"));
         } 
         catch(EmailException ex){

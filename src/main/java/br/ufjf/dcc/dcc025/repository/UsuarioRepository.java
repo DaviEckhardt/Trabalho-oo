@@ -14,7 +14,7 @@ import java.util.List;
 public class UsuarioRepository extends Repository<Usuario>  {
 
     public UsuarioRepository() {
-        super("usuario");        
+        super("usuario");  
     }
 
     public Usuario obterPorLoginSenha(String login, String senha){
