@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 
 public class LoginController {
     private static Usuario usuarioLogado;
-    public static void init(){
+    public static void iniciar(){
         UsuarioRepository repository = new UsuarioRepository();
         if(!repository.findAll().isEmpty())
             return;

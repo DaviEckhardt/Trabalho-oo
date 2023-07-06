@@ -1,17 +1,13 @@
 package br.ufjf.dcc.dcc025.view;
 
 import br.ufjf.dcc.dcc025.interfaces.IPesquisa;
-import br.ufjf.dcc.dcc025.model.Categoria;
-import br.ufjf.dcc.dcc025.model.Equipe;
 import br.ufjf.dcc.dcc025.model.Peca;
 import br.ufjf.dcc.dcc025.model.Robo;
-import br.ufjf.dcc.dcc025.repository.EquipeRepository;
 import br.ufjf.dcc.dcc025.repository.PecaRepository;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
